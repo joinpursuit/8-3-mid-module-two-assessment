@@ -123,8 +123,7 @@ function filterByGenre(movies, genre) {
   let moviesByGenre = {};
   if(movies.length !== 0){
     moviesByGenre = movies.filter(movie => ((movie.genre).toLowerCase()).includes(genre.toLowerCase()));
-    //console.log(moviesByGenre)
-    // Validating if any movie match with the Id provided
+    // Validating if any movie passed the filter by genre provided
     if(moviesByGenre === undefined){
       moviesByGenre = [];  
     }
@@ -159,7 +158,17 @@ function filterByGenre(movies, genre) {
     ];
  */
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
-
+  let moviesByGenre = {};
+  if(movies.length !== 0){
+    moviesByGenre = movies.filter(movie => ((movie.released).substring(movie.released.length-4)) <= year);
+    // Validating if any movie passed the filter by genre provided
+    if(moviesByGenre === undefined){
+      moviesByGenre = [];  
+    }
+  }else{
+    throw 'Error: the Movie list is empty';
+  }
+  return moviesByGenre;
 }
 
 /**
