@@ -115,7 +115,9 @@ function filterByGenre(movies, genre) {
 	if (!movies.length) {
 		throw `Error: movies array is empty!`;
 	}
-	return movies.filter((movie) => movie.genre.toLowerCase().includes(genre.toLowerCase()));
+	return movies.filter((movie) =>
+		movie.genre.toLowerCase().includes(genre.toLowerCase())
+	);
 }
 
 /**
@@ -142,7 +144,15 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+	if (!movies.length) {
+		throw `Error: movies array is empty!`;
+	}
+	return movies.filter((movie) => {
+		let releaseYear = movie.released.substring(-4);
+		return Number(releaseYear) <= year;
+	});
+}
 
 /**
  * checkMinMetascores()
