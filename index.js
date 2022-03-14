@@ -92,7 +92,7 @@ function findById(movies, id) {
   const found = movies.find((movie) => {
     if (movie.imdbID === id) {
       return movie;
-    }
+    } 
     if (movie.imdbID !== id) {
       return null;
     }
@@ -100,9 +100,15 @@ function findById(movies, id) {
   if (movies.length === 0) {
     throw "Error";
   }
+  if (found === undefined) {
+    return null;
+  }
   return found;
 }
 // (movies.imdbID !== id)
+// else if (!movie.imdbID !== id) {
+//return found || null;
+//}
 
 /**
  * filterByGenre()
