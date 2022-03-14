@@ -179,8 +179,8 @@ function checkMinMetascores(movies, metascore) {
   if (!movies.length) {
     throw `There are no movies in ${movies}`;
   }
-  const metaCondition = (movie) => Number(movie.metascore) > metascore;
-  return movies.every(metaCondition);
+  const minScoreCondition = (movie) => Number(movie.metascore) > metascore;
+  return movies.every(minScoreCondition);
 }
 
 /**
@@ -207,17 +207,34 @@ function checkMinMetascores(movies, metascore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
+// function getRottenTomatoesScoreByMovie(movies) {
+//   if (!movies.length) {
+//     throw `There are no movies in ${movies}`;
+//   }
+//   titleScoreObj = (movie) => {
+//     ratingsArr = movie.ratings;
+//     rottenObject = ratingsArr.find((element) => element.value.includes("%"));
+//     rottenScore = rottenObject.value;
+//     return { [movie.title]: rottenScore };
+//   };
+//   return movies.map(titleScoreObj);
+// }
+
 function getRottenTomatoesScoreByMovie(movies) {
   if (!movies.length) {
     throw `There are no movies in ${movies}`;
   }
-  movieObj = (movie) => {
+  titleScoreObj = (movie) => {
     ratingsArr = movie.ratings;
-    rottenObject = ratingsArr.find((element) => element.value.includes("%"));
+    rottenObject = ratingsArr.find((element) => {
+      if (element.source === "Rotten Tomatoes") {
+        return element.value;
+      }
+    });
     rottenScore = rottenObject.value;
     return { [movie.title]: rottenScore };
   };
-  return movies.map(movieObj);
+  return movies.map(titleScoreObj);
 }
 
 // Do not change anything below this line.
