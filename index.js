@@ -149,7 +149,10 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
 		throw `Error: movies array is empty!`;
 	}
 	return movies.filter((movie) => {
-		let releaseYear = movie.released.substring(movie.released.length-4, movie.released.length);
+		let releaseYear = movie.released.substring(
+			movie.released.length - 4,
+			movie.released.length
+		);
 		return Number(releaseYear) <= year;
 	});
 }
@@ -160,7 +163,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  * Returns either true or false depending whether all movies have a minimum metascore. If the movie array is empty, throw an error with a message.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
  * @param {number} metascore - A minimum metascore number. (e.g. 80)
- * @returns {Boolean|Error} An array of movies where the `released` year is equal to or less than the inputted year.
+ * @returns {Boolean|Error} A boolean that indicates whether all movies have a metascore above the minimum threshhold
  *
  * NOTE: You must use the .every()` method.
  *
@@ -168,7 +171,12 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+	if (!movies.length) {
+		throw `Error: movies array is empty!`;
+	}
+	return movies.every((movie) => Number(movie.metascore) > metascore);
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
