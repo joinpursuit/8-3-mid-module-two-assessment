@@ -115,6 +115,7 @@ function filterByGenre(movies, genre) {
     throw "Error: No movies";
   }
   return movies.filter((movie) => movie.genre.includes(genre));
+  //must add .toLowerCase or .toUpperCase to be case-insensitive
 }
 
 /**
@@ -145,7 +146,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   if (!movies.length) {
     throw "Error: No movies";
   }
-  return movies.filter((movie) => movie.year.includes(year));
+  return movies.filter((movie) => movie.released.includes(year) >= year);
 }
 
 /**
