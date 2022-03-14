@@ -160,9 +160,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  */
 function checkMinMetascores(movies, score) {
   if (!movies.length) throw 'Error!! Movies array is empty ,movies not found';
-  return movies.every((movie) =>
-    movie.metascore >= 60 ? true : movie.metascore <= 90 ? false : ''
-  );
+  return movies.every((movie) => movie.metascore >= score);
 }
 
 /**
@@ -209,7 +207,6 @@ function getRottenTomatoesScoreByMovie(movies) {
     return { [movie.title]: rottenTomatoValue.value };
   });
 }
-
 
 // Do not change anything below this line.
 module.exports = {
