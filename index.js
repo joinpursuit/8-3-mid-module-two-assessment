@@ -62,7 +62,7 @@ function checkIfAnyMovieHasRating(movies, rating) {
   if (!movies.length) {
     throw "Error: No movies";
   }
-  return movies.some((movie) => movie.rated === rating);
+  return movies.some((movie) => movie.rated === (rating || "G"));
 }
 
 /**
@@ -154,7 +154,13 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   if (!movies.length) {
     throw "Error: No movies";
   }
-  return movies.filter((movie) => movie.released.includes(year) >= year);
+  let arr = [];
+  movies.filter((movie) => {
+    if (movie.released.slice(7) <= year) {
+      arr.push(movie);
+    }
+  });
+  return arr;
 }
 
 /**
