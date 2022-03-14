@@ -88,11 +88,16 @@ function checkIfAnyMovieHasRating(movies, rating) {
     };
  */
 function findById(movies, id) {
-  //   let found = {}
-  //   found = movies.find((movie) => {
-  //     return movie.title === id
-  //   })
-  //   return found
+  const found = movies.find((movie) => {
+    if (movie.imdbID === id) {
+      return movie;
+    } else if (movies.imdbID !== id) {
+      return null
+    } else if (movies.length === 0){
+      throw "error!"
+    }
+  });
+  return found;
 }
 
 /**
