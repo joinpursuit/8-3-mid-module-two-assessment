@@ -104,7 +104,13 @@ const findById = (movies, id) =>{
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+const filterByGenre = (movies, genre) => {
+  if (!movies.length) {
+    throw "No matching genre"
+  }
+  let finding = movies.filter(movie => movie.genre.toUpperCase().includes(genre.toUpperCase()))
+  return finding 
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
