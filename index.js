@@ -207,36 +207,21 @@ function checkMinMetascores(movies, metascore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-// function getRottenTomatoesScoreByMovie(movies) {
-//   if (!movies.length) {
-//     throw `There are no movies in ${movies}`;
-//   }
-//   titleScoreObj = (movie) => {
-//     ratingsArr = movie.ratings;
-//     rottenObject = ratingsArr.find((element) => element.value.includes("%"));
-//     rottenScore = rottenObject.value;
-//     return { [movie.title]: rottenScore };
-//   };
-//   return movies.map(titleScoreObj);
-// }
 
 function getRottenTomatoesScoreByMovie(movies) {
   if (!movies.length) {
     throw `There are no movies in ${movies}`;
   }
   titleScoreObj = (movie) => {
-    ratingsArr = movie.ratings;
-    rottenObject = ratingsArr.find((element) => {
-      if (element.source === "Rotten Tomatoes") {
-        return element.value;
-      }
-    });
+    rottenObject = movie.ratings.find(
+      (element) => element.source === "Rotten Tomatoes"
+    );
     rottenScore = rottenObject.value;
     return { [movie.title]: rottenScore };
   };
   return movies.map(titleScoreObj);
 }
-
+console.log(getRottenTomatoesScoreByMovie(exampleMovies));
 // Do not change anything below this line.
 module.exports = {
   getAllMovieTitles,
