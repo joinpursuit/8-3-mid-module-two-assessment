@@ -57,13 +57,14 @@ function getAllMovieTitles(movies) {
  * EXAMPLE:
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
- *///TODO: 'FINISH CODE CHECK RATING'
-function checkIfAnyMovieHasRating(movies) {
-  let hasRating = movies.some((movie) => movie.rating);
+ */ 
+function checkIfAnyMovieHasRating(movies, rating) {
+  let hasRating = rating ? rating: 'G'
   if (!movies.length) {
-    throw `This movie does not exist`;
+    throw `This MOVIE does not exist`;
   }
-  return hasRating;
+  
+  return movies.some((movie) => {return movie.rated === hasRating})
 }
 
 /**
@@ -84,11 +85,9 @@ function checkIfAnyMovieHasRating(movies) {
  */
 function findById(movies, id) {
   let findId = movies.find((movie) => movie.imdbID === id);
-
   if (!movies.length) {
-    throw `Could not find movie with id: ${id}`;
+    throw `Could not find MOVIE with id: ${id}`;
   }
-
   return findId || null;
 }
 
@@ -115,15 +114,14 @@ function findById(movies, id) {
  *  //> []
  */
 function filterByGenre(movies, genre) {
-  let byGenre = []
-  let result = movies.filter(movie => movie.genre.toLowerCase().includes(genre.toLowerCase()))
-  
+  let byGenre = [];
+  let result = movies.filter((movie) =>
+    movie.genre.toLowerCase().includes(genre.toLowerCase()),
+  );
   if (!movies.length) {
     throw `There are No Movies`;
   }
-  
-  return result
-  
+  return result;
 }
 
 /**
@@ -150,12 +148,14 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear(movies, year){
-  let moviesReleased= movies.filter( movie => movie.released.slice(-4)<= year)
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  let moviesReleased = movies.filter(
+    (movie) => movie.released.slice(-4) <= year,
+  );
   if (!movies.length) {
-    throw `There are No Movies`;
+    throw `That MOVIE only Exist in the ether`;
   }
-  return moviesReleased 
+  return moviesReleased;
 }
 
 /**
@@ -173,16 +173,12 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year){
  *  //>  false
  */
 function checkMinMetascores(movies, metascore) {
-  let minMetaScore = movies.every( movie => movie.metascore > metascore)
-  
-
+  let minMetaScore = movies.every((movie) => movie.metascore > metascore);
   if (!movies.length) {
-    throw `There are No Movies`;
-  }  
-  
-  
-  return minMetaScore
+    throw `SORRY MOVIE NOT FOUND :(`;
   }
+  return minMetaScore;
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -209,8 +205,15 @@ function checkMinMetascores(movies, metascore) {
     ];
  */
 //TODO: get rottontomatoesScore
-function getRottenTomatoesScoreByMovie() {
-
+function getRottenTomatoesScoreByMovie(movies) {
+let rtScoreNTitle = {}
+  let scoreByMovie = movies.find((movie) => movie.ratings[2]);
+  let moviename = movies.map(movie => (movie.title))
+rtScoreNTitle.push({[moviename]:scoreByMovie})
+  if (!movies.length) {
+    throw `There are No Movies`;
+  }
+  return rtScoreNTitle;
 }
 
 // Do not change anything below this line.
