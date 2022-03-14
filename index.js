@@ -156,7 +156,17 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (!movies.length) {
+    throw "Movie could not be found." //created throw error
+  }
+
+
+return movies.filter((movie) => {
+ const splitYear = movie.released.split(" ")
+  return parseInt(splitYear[2]) <= year
+}) // a new variable was created in order to house just the year from the released string. I then return a coversion of that string into a number and  ompare it to see if its less than or equal to the given value
+}
 
 /**
  * checkMinMetascores()
