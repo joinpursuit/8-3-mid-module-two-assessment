@@ -31,10 +31,10 @@ const exampleMovies = require("./movies");
     ];
  */
 function getAllMovieTitles(movies) {
-    if (!movies.length) {
-        throw `Error: movies array is empty!`;
-    }
-    return movies.map((movie) => movie.title);
+	if (!movies.length) {
+		throw `Error: movies array is empty!`;
+	}
+	return movies.map((movie) => movie.title);
 }
 
 /**
@@ -55,11 +55,11 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating(movies, rating="G") {
-    if (!movies.length) {
-        throw `Error: movies array is empty!`;
-    }
-    return movies.some((movie) => movie.rated === rating);
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+	if (!movies.length) {
+		throw `Error: movies array is empty!`;
+	}
+	return movies.some((movie) => movie.rated === rating);
 }
 
 /**
@@ -78,7 +78,12 @@ function checkIfAnyMovieHasRating(movies, rating="G") {
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+	if (!movies.length) {
+		throw `Error: movies array is empty!`;
+	}
+	return movies.find((movie) => movie.imdbID === id);
+}
 
 /**
  * filterByGenre()
@@ -174,11 +179,11 @@ function getRottenTomatoesScoreByMovie() {}
 
 // Do not change anything below this line.
 module.exports = {
-    getAllMovieTitles,
-    checkIfAnyMovieHasRating,
-    findById,
-    filterByGenre,
-    checkMinMetascores,
-    getAllMoviesReleasedAtOrBeforeYear,
-    getRottenTomatoesScoreByMovie,
+	getAllMovieTitles,
+	checkIfAnyMovieHasRating,
+	findById,
+	filterByGenre,
+	checkMinMetascores,
+	getAllMoviesReleasedAtOrBeforeYear,
+	getRottenTomatoesScoreByMovie,
 };
