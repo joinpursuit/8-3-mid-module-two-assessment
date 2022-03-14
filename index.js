@@ -3,7 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
-const exampleMovies = require("./movies");
+const exampleMovies = require('./movies');
 // Do not change the line above.
 
 /**
@@ -30,7 +30,16 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  if (movies.length < 1) {
+    throw 'Error: No movies found';
+  } else {
+    const movieTitles = movies.map(function (movie) {
+      return movie.title;
+    });
+    return movieTitles;
+  }
+}
 
 /**
  * checkIfAnyMovieHasRating()
