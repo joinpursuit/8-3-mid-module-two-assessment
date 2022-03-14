@@ -158,7 +158,17 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (!movies.length) {
+    throw "ERROR: Input array cannot be empty";
+  } // Validator
+
+  return movies.filter((movie) => {
+    const movieReleaseYear = new Date(movie.released).toString().split(" ")[3];
+    // creates a Date Object for the movie release date and modifies it to be comparable with the inputted year
+    return movieReleaseYear <= year;
+  });
+}
 
 /**
  * checkMinMetascores()
