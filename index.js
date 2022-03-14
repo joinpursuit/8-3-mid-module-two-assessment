@@ -57,8 +57,8 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating(movies, rating) {
-  let list = movies.some(movie => movie.rated.includes(rating));
+function checkIfAnyMovieHasRating(movies, rating = 'G') {
+  let list = movies.some(movie => movie.rated === rating);
   if (movies.length === 0){
     throw 'ERROR: No Movies Found'
  }
@@ -165,7 +165,13 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores(movie, metascore) {}
+function checkMinMetascores(movies, metascore) {
+  let list = (movies.every(movie => movie.metascore >= metascore))
+  if (movies.length === 0){
+    throw 'ERROR: No Movies Founds'
+  }
+  return list
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
