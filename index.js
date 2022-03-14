@@ -111,10 +111,10 @@ function findById(movies, id) {
  *  //> []
  */
 function filterByGenre(movies, genre) {
-  //   if (!movies.length) {
-  //     throw "Error: No movies";
-  //   }
-  //   return movies.filter((movie) => movie.genre === genre);
+  if (!movies.length) {
+    throw "Error: No movies";
+  }
+  return movies.filter((movie) => movie.genre === genre);
 }
 
 /**
