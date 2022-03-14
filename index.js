@@ -169,7 +169,14 @@ const getAllMoviesReleasedAtOrBeforeYear = (movies, year) => {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-const checkMinMetascores = (movies, metascore) => {}
+const checkMinMetascores = (movies, metascore) => {
+  if (!movies.length){
+    throw "No movies"
+  }
+  let findScore = movies.every(movie => Number(movie.metascore) >= metascore)
+
+  return findScore
+}
 /**
  * getRottenTomatoesScoreByMovie()
  * -----------------------------
@@ -194,8 +201,22 @@ const checkMinMetascores = (movies, metascore) => {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie(movies) {}
+function getRottenTomatoesScoreByMovie(movies) {
+  // ✕ should use the `.map()` method (1 ms)
+  // ✓ should use the `.find()` method
+  // ✓ should throw an error if there are no movies (1 ms)
+  // ✕ should an array of objects, where the key is the movie title and the value is the Rotten Tomatoes score (1 ms)
+  // ✕ should dynamically change depending on the movies inputted
+ // movies[0].ratings[1].value
 
+  if (!movies.length) {
+      throw "No Movies"
+  }
+  
+  // let findRating = movies.find()
+  // return findRating
+}
+console.log(getRottenTomatoesScoreByMovie(movies))
 // Do not change anything below this line.
 module.exports = {
   getAllMovieTitles,
