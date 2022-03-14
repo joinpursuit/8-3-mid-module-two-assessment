@@ -122,7 +122,7 @@ function filterByGenre(movies, genre) {
 		throw 'Sorry, no movies match the selected genre';
 	}
 	return movies.filter((movie) =>
-		movie.genre.toLowerCase().includes(genre.toLowerCase)
+		movie.genre.toLowerCase().includes(genre.toLowerCase())
 	);
 }
 
