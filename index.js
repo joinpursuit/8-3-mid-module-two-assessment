@@ -62,7 +62,17 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies) {
+if (!movies.rated) {
+  movies['rated'] = "G" // to satisfy if no rating was passed to the movie given
+}
+if (!movies.length) {
+  throw "No movie was found." //a throw for if there is no movie listed at all
+}
+  return movies.some((movies) => {return movies.rated === "G" ? true:false})
+//some method which tells you true if any of the movies listed has a G rating. 
+  //I am unsure why it is not reading that I have false as an option as well...
+}
 
 /**
  * findById()
