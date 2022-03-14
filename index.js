@@ -173,7 +173,7 @@ function checkMinMetascores(movies, metascore) {
   if (movies.length === 0) 
     throw "error";
     let checkMin = movies.every((movie) => {
-      if (movie.metascore > 60) {
+      if (movie.metascore > metascore) {
         return true;        
       } else {
         return false;
@@ -207,8 +207,19 @@ function checkMinMetascores(movies, metascore) {
     ];
  */
 function getRottenTomatoesScoreByMovie(movies) {
-  
+  if (movies.length === 0) 
+  throw "error";
+  let rottenScore = movies.find((movie) => {
+    if(movie.rating === "Rotten Tomatoes") {
+      return movie.rating;
+    }
+    // I have to access the property `source` in the property `rating` to return the key/value pair.
+    return movies.map((movie) => {
+      return {[movie.title]: movie.rating}
+    })
+  });
 }
+
 
 // Do not change anything below this line.
 module.exports = {
