@@ -177,6 +177,17 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   if (!movies.length) {
     throw `the input array is empty`;
   }
+  let convertYearToNumber = ((string) => {
+    let newArray = string.split(" ");
+    let getYear = Number(newArray[2]);
+    return getYear;
+  })
+  let filteredMoviesArray = movies.filter((movie) => {
+    if (convertYearToNumber(movie.released) <= year) {
+      return movie;
+    }
+  });
+  return filteredMoviesArray;
 }
 
 /**
