@@ -30,7 +30,13 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movie) {
+    let list = movie.map((movies) => movies.title);
+    if (list.length === 0){
+      throw 'Error: No Movies Found'
+    }
+    return list
+  }
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +56,7 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movie) {}
 
 /**
  * findById()
@@ -68,7 +74,7 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movie) {}
 
 /**
  * filterByGenre()
@@ -118,7 +124,7 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movie) {}
 
 /**
  * checkMinMetascores()
@@ -134,7 +140,7 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movie) {}
 
 /**
  * getRottenTomatoesScoreByMovie()
