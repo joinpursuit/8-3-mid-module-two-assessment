@@ -240,8 +240,24 @@ function checkMinMetascores(movies, metascore) {
       { Fantasia: "95%" },
       { "James and the Giant Peach": "91%" },
     ];
+
+    if ratings[i].source === "Rotten Tomatoes" 
+    let rottenTomatoesRating = ratings[i].value
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (!movies.length) {
+    throw `input array is empty`;
+  } 
+  return movies.map((movie) => {
+    let ratingsArray = movie.ratings
+    let rottenTomatoesRating = ratingsArray.find((rating) => {
+      return rating.source === "Rotten Tomatoes";
+    });
+    let movieTitleAndRating = {};
+    movieTitleAndRating[movie.title] = rottenTomatoesRating.value;
+    return movieTitleAndRating
+  });
+}
 
 // Do not change anything below this line.
 module.exports = {
