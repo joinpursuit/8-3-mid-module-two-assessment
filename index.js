@@ -153,16 +153,14 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   if (!movies.length) {
     throw `There are no movies in ${movies}`;
   }
+  const yearChecker = (movie) => {
+    movieYear = movie.released.split(" ")[2];
+    if (year >= movieYear) {
+      return movie;
+    }
+  };
+  return movies.filter(yearChecker);
 }
-
-const yearChecker = (movie) => {
-  movieYear = movie.released.split(" ")[2];
-  console.log(movieYear);
-};
-
-console.log(yearChecker(exampleMovies[0]));
-console.log(yearChecker(exampleMovies[1]));
-console.log(yearChecker(exampleMovies[2]));
 
 /**
  * checkMinMetascores()
