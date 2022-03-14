@@ -60,11 +60,17 @@ function getAllMovieTitles(movies) {
  *  //> false
  */
 function checkIfAnyMovieHasRating(movies, rating) {
-  let movieCheck = movies.some((movie) => {
-    movie.rating === rating;
+  const checkRating = movies.some((movie) => {
+    if (movie.rated === rating) {
+      return movie;
+    } else if (!rating) {
+      rating = "G";
+    } else if (movies.length === 0) {
+      throw "Error";
+    }
   });
+  return checkRating;
 }
-
 /**
  * findById()
  * -----------------------------
@@ -81,7 +87,13 @@ function checkIfAnyMovieHasRating(movies, rating) {
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  //   let found = {}
+  //   found = movies.find((movie) => {
+  //     return movie.title === id
+  //   })
+  //   return found
+}
 
 /**
  * filterByGenre()
