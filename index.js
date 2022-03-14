@@ -82,7 +82,11 @@ function findById(movies, id) {
 	if (!movies.length) {
 		throw `Error: movies array is empty!`;
 	}
-	return movies.find((movie) => movie.imdbID === id);
+	let foundMovie = movies.find((movie) => movie.imdbID === id);
+	if (!foundMovie) {
+		return null;
+	}
+	return foundMovie;
 }
 
 /**
