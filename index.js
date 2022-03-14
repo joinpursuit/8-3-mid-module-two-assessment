@@ -136,10 +136,14 @@ function filterByGenre(movies, genre) {
   if (!movies.length) {
     throw `the input array is empty`;
   }
+  if (typeof genre === "string") {
+    genre = genre.toLowerCase();
+  }
   let returnArray = [];
   const filteredMoviesArray = movies.filter((movie) => {
-    if (movie.genre.includes(genre)) {
-      return returnArray.push(movie.title);
+    let genreString = movie.genre.toLowerCase();
+    if (genreString.includes(genre)) {
+      return returnArray.push(movie);
     }
   });
   return filteredMoviesArray;
