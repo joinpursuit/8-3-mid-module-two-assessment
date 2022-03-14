@@ -161,6 +161,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   }
 
   return movies.filter((movie) => {
+    //use date object to help get the released year of movie
     let releasedYear = new Date(movie.released).getFullYear();
     return releasedYear <= year;
   });
