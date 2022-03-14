@@ -158,17 +158,17 @@ function filterByGenre(movies, genre) {
     ];
  */
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
-  let moviesByGenre = {};
+  let moviesByYear = {};
   if(movies.length !== 0){
-    moviesByGenre = movies.filter(movie => ((movie.released).substring(movie.released.length-4)) <= year);
-    // Validating if any movie passed the filter by genre provided
-    if(moviesByGenre === undefined){
-      moviesByGenre = [];  
+    moviesByYear = movies.filter(movie => ((movie.released).substring(movie.released.length-4)) <= year);
+    // Validating if any movie passed the filter by released year provided
+    if(moviesByYear === undefined){
+      moviesByYear = [];  
     }
   }else{
     throw 'Error: the Movie list is empty';
   }
-  return moviesByGenre;
+  return moviesByYear;
 }
 
 /**
@@ -186,7 +186,11 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  //>  false
  */
 function checkMinMetascores(movies, metascore) {
-
+  if(movies.length !== 0){
+    return movies.every((movie) => movie.metascore >= metascore);
+  }else{
+    throw 'Error: the Movie list is empty';
+  }
 }
 
 /**
