@@ -127,7 +127,6 @@ function findById(movies, id) {
  *  //> []
  */
 function filterByGenre(movies, genre) {
-  genre = genre.toLowerCase
   const filtered = movies.filter((movie) => {
     if (movie.genre.includes(genre)) {
       return movie;
