@@ -107,7 +107,16 @@ const findById = (movies, id) => {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+const filterByGenre = (movies, genre) => {
+  if (!movies.length) {
+    throw 'Error: Movies array is empty';
+  }
+  return (
+    movies.filter((movie) =>
+      movie.genre.toLowerCase().includes(genre.toLowerCase())
+    ) || []
+  );
+};
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
