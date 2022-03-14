@@ -62,16 +62,16 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating(movies) {
-if (!movies.rated) {
-  movies['rated'] = "G" // to satisfy if no rating was passed to the movie given
-}
-if (!movies.length) {
+function checkIfAnyMovieHasRating(movies, rating) {
+  if (!movies.length) {
   throw "No movie was found." //a throw for if there is no movie listed at all
 }
-  return movies.some((movies) => {return movies.rated === "G" ? true:false})
+
+let ratingToUse = rating ? rating : "G" // checking if rating exists and if it doesnt G is passed
+
+  return movies.some((movie) => {return movie.rated === ratingToUse})
 //some method which tells you true if any of the movies listed has a G rating. 
-  //I am unsure why it is not reading that I have false as an option as well...
+  
 }
 
 /**
@@ -90,7 +90,15 @@ if (!movies.length) {
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+if (!movies.length) {
+    throw "Movie could not be found."
+}
+  
+return movies.find((movie) => {
+    return 
+      })
+}
 
 /**
  * filterByGenre()
