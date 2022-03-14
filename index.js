@@ -114,7 +114,9 @@ function filterByGenre(movies, genre) {
   if (!movies.length) {
     throw "Error: No movies";
   }
-  return movies.filter((movie) => movie.genre.includes(genre));
+  return movies.filter((movie) =>
+    movie.genre.toUpperCase().includes(genre.toUpperCase())
+  );
   //must add .toLowerCase or .toUpperCase to be case-insensitive
 }
 
