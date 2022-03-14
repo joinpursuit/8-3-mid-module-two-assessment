@@ -62,7 +62,8 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
   if (!movies.length) {
     throw `There are no movies in ${movies}`;
   }
-  return movies.some((movie) => movie.rated === rating);
+  const ratingChecker = (movie) => movie.rated === rating;
+  return movies.some(ratingChecker);
 }
 
 /**
@@ -82,15 +83,13 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
     };
  */
 function findById(movies, id) {
+  idSearch = (movie) => movie.imdbID === id;
   if (!movies.length) {
     throw `There are no movies in ${movies}`;
-  }
-  idSearch = (movie) => movie.imdbID === id;
-  if (!movies.find(idSearch)) {
+  } else if (!movies.find(idSearch)) {
     return null;
-  } else {
-    return movies.find(idSearch);
   }
+  return movies.find(idSearch);
 }
 
 /**
