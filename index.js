@@ -37,7 +37,7 @@ function getAllMovieTitles(movies) {
 
   return movies.map((movie) => {
     return movie.title;
-  }); // Transforms array to only movie titles as elements
+  }); // Creates new array with movie titles as elements
 }
 
 /**
@@ -58,7 +58,15 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+  if (!movies.length) {
+    throw "ERROR: Input array cannot be empty";
+  } // Validator
+
+  return movies.some((movie) => {
+    return movie.rated === rating;
+  }); // Checks for at least one movie title with inputted rating
+}
 
 /**
  * findById()
@@ -76,7 +84,23 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if (!movies.length) {
+    throw "ERROR: Input array cannot be empty";
+  } // Validator
+
+  const matchingMovieById = movies.find((movie) => {
+    if (movie.imdbID === id) {
+      return movie.title;
+    }
+  });
+
+  if (matchingMovieById) {
+    return matchingMovieById;
+  } else {
+    return null;
+  }
+}
 
 /**
  * filterByGenre()
