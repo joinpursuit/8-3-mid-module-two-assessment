@@ -170,7 +170,16 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  //>  false
  */
 function checkMinMetascores(movies, metascore) {
- 
+  if (movies.length === 0) 
+    throw "error";
+    let checkMin = movies.every((movie) => {
+      if (movie.metascore > 60) {
+        return true;        
+      } else {
+        return false;
+      }
+    });
+    return checkMin;
 }
 
 /**
