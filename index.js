@@ -57,11 +57,9 @@ function getAllMovieTitles(movies) {
  * EXAMPLE:
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
- */
+ *///TODO: 'FINISH CODE CHECK RATING'
 function checkIfAnyMovieHasRating(movies) {
-  let hasRating = movies.some((movie) => movie.rating === 'G' || 'R');
-  if (hasRating === '')
-  hasRating.push('G')
+  let hasRating = movies.some((movie) => movie.rating);
   if (!movies.length) {
     throw `This movie does not exist`;
   }
@@ -153,7 +151,11 @@ function filterByGenre(movies, genre) {
     ];
  */
 function getAllMoviesReleasedAtOrBeforeYear(movies, year){
-
+  let moviesReleased= movies.filter( movie => movie.released.slice(-4)<= year)
+  if (!movies.length) {
+    throw `There are No Movies`;
+  }
+  return moviesReleased 
 }
 
 /**
@@ -206,7 +208,10 @@ function checkMinMetascores(movies, metascore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+//TODO: get rottontomatoesScore
+function getRottenTomatoesScoreByMovie() {
+
+}
 
 // Do not change anything below this line.
 module.exports = {
