@@ -59,7 +59,11 @@ function getAllMovieTitles(movies) {
  *  //> false
  */
 function checkIfAnyMovieHasRating(movies, rating="G") {
- 
+  if (movies.length === 0) 
+  throw "error";
+  return movies.some((movie) => {
+    return movie.rated === rating;
+  });
 } 
 
 
