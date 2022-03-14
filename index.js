@@ -59,11 +59,12 @@ function getAllMovieTitles(movies) {
  *  //> false
  */
 function checkIfAnyMovieHasRating(movies) {
-  let hasRating = movies.some((movie) => movie.rating === 'G');
+  let hasRating = movies.some((movie) => movie.rating === 'G' || 'R');
+  if (hasRating === '')
+  hasRating.push('G')
   if (!movies.length) {
     throw `This movie does not exist`;
   }
-
   return hasRating;
 }
 
@@ -115,7 +116,17 @@ function findById(movies, id) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre(movies) {}
+function filterByGenre(movies, genre) {
+  let byGenre = []
+  let result = movies.filter(movie => movie.genre.toLowerCase().includes(genre.toLowerCase()))
+  
+  if (!movies.length) {
+    throw `There are no Movies`;
+  }
+  
+  return result
+  
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
