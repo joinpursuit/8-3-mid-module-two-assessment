@@ -135,7 +135,14 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (!movies.length) throw 'Error!! Movies array is empty ,movies not found';
+  return movies.filter((movie) => {
+    let findYear = new Date(movie.released);
+    movieReleasedYear = findYear.getFullYear();
+    return movieReleasedYear <= year;
+  });
+}
 
 /**
  * checkMinMetascores()
