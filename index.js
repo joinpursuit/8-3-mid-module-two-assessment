@@ -85,7 +85,13 @@ function findById(movies, id) {
   if (!movies.length) {
     throw "Error: No movies";
   }
-  return movies.find((movie) => movie.imdbID === id);
+  let result = null;
+  movies.find((movie) => {
+    if (movie.imdbID === id) {
+      result = movie;
+    }
+  });
+  return result;
 }
 
 /**
