@@ -155,10 +155,10 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   if (movies.length < 1) {
     throw 'There are no movies.'
   } else {
-    let releasedYear = movies.filter(movie => {
+    return movies.filter(movie => {
       let releasedArr = movie.released.split(' ')
-      if (Number(releasedArr.length - 1) <= Number(year)) {
-        console.log(releasedArr[2], year)
+      if (Number(releasedArr[2]) <= year) {
+        return movie
       }
     })
   }
