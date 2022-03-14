@@ -86,7 +86,6 @@ function findById(movies, id) {
     throw `There are no movies in ${movies}`;
   }
   idSearch = (movie) => movie.imdbID === id;
-
   if (!movies.find(idSearch)) {
     return null;
   } else {
@@ -116,7 +115,11 @@ function findById(movies, id) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if (!movies.length) {
+    throw `There are no movies in ${movies}`;
+  }
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
