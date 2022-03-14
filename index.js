@@ -30,7 +30,12 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+    if (!movies.length) {
+        throw `Error: movies array is empty!`;
+    }
+    return movies.map((movie) => movie.title);
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +55,9 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies) {
+
+}
 
 /**
  * findById()
@@ -164,11 +171,11 @@ function getRottenTomatoesScoreByMovie() {}
 
 // Do not change anything below this line.
 module.exports = {
-  getAllMovieTitles,
-  checkIfAnyMovieHasRating,
-  findById,
-  filterByGenre,
-  checkMinMetascores,
-  getAllMoviesReleasedAtOrBeforeYear,
-  getRottenTomatoesScoreByMovie,
+    getAllMovieTitles,
+    checkIfAnyMovieHasRating,
+    findById,
+    filterByGenre,
+    checkMinMetascores,
+    getAllMoviesReleasedAtOrBeforeYear,
+    getRottenTomatoesScoreByMovie,
 };
