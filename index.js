@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require('./movies');
 const exampleMovies = require('./movies');
 // Do not change the line above.
 
@@ -59,7 +60,20 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rated) {
+  if (Object.keys(movies).length === 0) {
+    throw 'Invalid data, please provide a movie.';
+  }
+
+  let movieRating = movies.some((movie) => movie.rated === rated);
+  if (movies.rated === '') {
+    movies.rated = 'G';
+    return movieRating;
+  }
+  {
+    return movieRating;
+  }
+}
 
 /**
  * findById()
@@ -77,7 +91,17 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if (Object.keys(movies).length === 0) {
+    throw 'Invalid data, please provide a movie.';
+  }
+  toCheckID = '';
+  let findMovie = movies.find((movie) => movie.imdbID === id, {});
+  if (!findMovie) {
+    return null;
+  }
+  return findMovie;
+}
 
 /**
  * filterByGenre()
