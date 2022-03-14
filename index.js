@@ -152,7 +152,13 @@ function filterByGenre(movies, genre) {
     ];
  */
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
-
+  if (!movies.length) {
+    throw "ERROR: Movie list is empty.";
+  } 
+  return movies.filter((movie) => {
+    const movieReleaseYear = new Date(movie.released).toString().split(" ")[3];
+    return movieReleaseYear <= year;
+  });
 }
 
 /**
@@ -203,8 +209,9 @@ function checkMinMetascores(movies, metascore) {
     ];
  */
 function getRottenTomatoesScoreByMovie(movies) {
-  if (!movies.length) 
+  if (!movies.length) {
     throw 'ERROR: movie list is empty.';
+  }
   return movies.map((movie) => {
     rottenTomatoValue = movie.ratings.find(
       (rating) => rating.source == 'Rotten Tomatoes'
