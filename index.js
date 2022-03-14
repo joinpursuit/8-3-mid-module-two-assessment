@@ -59,7 +59,7 @@ function getAllMovieTitles(movies) {
  */
 function checkIfAnyMovieHasRating(movies, rating='G') {
   if(movies.length !== 0){
-    return movieTitles = movies.some((movie) => movie.rated === rating)
+    return movieHasRating = movies.some((movie) => movie.rated === rating)
   }else{
     throw 'Error: the Movie list is empty';
   }
@@ -68,7 +68,8 @@ function checkIfAnyMovieHasRating(movies, rating='G') {
 /**
  * findById()
  * -----------------------------
- * Returns a movie object from an array of objects based on the ID. If the inputted `movies` array is empty, throw an error with a message. If the ID does not match any movie, return `null`.
+ * Returns a movie object from an array of objects based on the ID. If the inputted `movies` array is empty, throw an error with a message. 
+ * If the ID does not match any movie, return `null`.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
  * @param {string} id - A unique `imdbID`.
  * @returns {Object|Error|null} The movie object with the matching `imdbID`.
@@ -81,7 +82,19 @@ function checkIfAnyMovieHasRating(movies, rating='G') {
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  let moviesById = {};
+  if(movies.length !== 0){
+    moviesById = movies.find(movie => movie.imdbID === id);
+    // Validating if any movie match with the Id provided
+    if(moviesById === undefined){
+      moviesById = null;  
+    }
+  }else{
+    throw 'Error: the Movie list is empty';
+  }
+  return moviesById;
+}
 
 /**
  * filterByGenre()
