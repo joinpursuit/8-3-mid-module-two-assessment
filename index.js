@@ -221,11 +221,14 @@ function getRottenTomatoesScoreByMovie(movies) {
   }
 
   return movies.map((movie) => {
+    //find the rotten tomato movie rating object
     let rottenTomatoRating = movie.ratings.find((rating) => {
       return rating.source === "Rotten Tomatoes";
     });
 
-    return { [movie.title]: rottenTomatoRating.value };
+    let movieNameAndRating = {};
+    movieNameAndRating[movie.title] = rottenTomatoRating.value;
+    return movieNameAndRating;
   });
 }
 
