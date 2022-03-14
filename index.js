@@ -5,7 +5,11 @@
 */
 const exampleMovies = require("./movies");
 // Do not change the line above.
-
+function checkMoviesArray(movies) {
+  if (movies.length === 0) {
+    throw "Error";
+  }
+}
 /**
  * getAllMovieTitles()
  * -----------------------------
@@ -31,9 +35,7 @@ const exampleMovies = require("./movies");
     ];
  */
 function getAllMovieTitles(movies) {
-  if (movies.length === 0) {
-    throw "Movies array is empty.";
-  }
+  checkMoviesArray(movies);
   return movies.map((movie) => {
     return movie.title;
   });
@@ -58,9 +60,7 @@ function getAllMovieTitles(movies) {
  *  //> false
  */
 function checkIfAnyMovieHasRating(movies, rating = "G") {
-  if (movies.length === 0) {
-    throw "Movies array is empty.";
-  }
+  checkMoviesArray(movies);
   return movies.some((movie) => {
     return movie.rated === rating;
   });
@@ -83,9 +83,7 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
     };
  */
 function findById(movies, id) {
-  if (movies.length === 0) {
-    throw "Movies array is empty.";
-  }
+  checkMoviesArray(movies);
   let movieMatch = null;
   movies.find((movie) => {
     if (movie.imdbID === id) {
@@ -118,9 +116,7 @@ function findById(movies, id) {
  *  //> []
  */
 function filterByGenre(movies, genre) {
-  if (movies.length === 0) {
-    throw "Movies array is empty.";
-  }
+  checkMoviesArray(movies);
   let genreFormat = genre[0].toUpperCase() + genre.slice(1).toLowerCase();
   return movies.filter((movie) => {
     return movie.genre.includes(genreFormat);
@@ -152,9 +148,7 @@ function filterByGenre(movies, genre) {
     ];
  */
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
-  if (movies.length === 0) {
-    throw "Movies array is empty.";
-  }
+  checkMoviesArray(movies);
   return movies.filter((movie) => {
     movie.released = movie.released.slice(-4);
     return movie.released <= year;
@@ -176,9 +170,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  //>  false
  */
 function checkMinMetascores(movies, metascore) {
-  if (movies.length === 0) {
-    throw "Movies array is empty.";
-  }
+  checkMoviesArray(movies);
   return movies.every((movie) => {
     return movie.metascore >= metascore;
   });
@@ -209,9 +201,7 @@ function checkMinMetascores(movies, metascore) {
     ];
  */
 function getRottenTomatoesScoreByMovie(movies) {
-  if (movies.length === 0) {
-    throw "Movies array is empty.";
-  }
+  checkMoviesArray(movies);
   return movies.map((movie) => {
     let obj = {};
     let value = movie.ratings.find((mov) => {
