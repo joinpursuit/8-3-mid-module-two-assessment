@@ -3,6 +3,9 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const {
+  lastIndexOf,
+} = require('../../ClassEx/8-3_lecture-notes/M2/mid-module-assessment/todo-data');
 const movies = require('./movies');
 const exampleMovies = require('./movies');
 // Do not change the line above.
@@ -66,10 +69,7 @@ function checkIfAnyMovieHasRating(movies, rated) {
   }
 
   let movieRating = movies.some((movie) => movie.rated === rated);
-  if (movies.rated === '') {
-    movies.rated = 'G';
-    return movieRating;
-  }
+
   {
     return movieRating;
   }
@@ -95,7 +95,7 @@ function findById(movies, id) {
   if (Object.keys(movies).length === 0) {
     throw 'Invalid data, please provide a movie.';
   }
-  toCheckID = '';
+
   let findMovie = movies.find((movie) => movie.imdbID === id, {});
   if (!findMovie) {
     return null;
@@ -125,7 +125,14 @@ function findById(movies, id) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if (Object.keys(movies).length === 0) {
+    throw 'Invalid data, please provide a movie.';
+  }
+}
+/*return movies.filter((movie) => {
+    return movie.genre.split(' ').toLowerCase() === genre.toLowerCase();
+  }); */
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -151,7 +158,7 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {}
 
 /**
  * checkMinMetascores()
@@ -167,7 +174,17 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  if (Object.keys(movies).length === 0) {
+    throw 'Invalid data, please provide a movie.';
+  }
+  let metascoreCheck = movies.every(
+    (movie) => Number(movie.metascore) >= metascore,
+    {},
+  );
+
+  return metascoreCheck;
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
