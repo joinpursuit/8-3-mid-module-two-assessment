@@ -195,7 +195,23 @@ const checkMinMetascores = (movies, metascore) => {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+const getRottenTomatoesScoreByMovie = (movies) => {
+  if (!movies.length) {
+    throw 'Error: Movies array is empty';
+  }
+  return movies.map((movie) => {
+    let rottenRating = movie.ratings.find(
+      (rating) => rating.source === 'Rotten Tomatoes'
+    );
+    return { [movie.title]: rottenRating.value };
+  });
+};
+
+/* start with error throw msg.
+return an array using .map. 
+.map callback function will set up a variable using .find to locate the rotten tomatoes ratings source.
+return statement  is an object for each iterations title:rottenscore.
+*/
 
 // Do not change anything below this line.
 module.exports = {
