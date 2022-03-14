@@ -136,7 +136,14 @@ const filterByGenre = (movies, genre) => {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+const getAllMoviesReleasedAtOrBeforeYear = (movies, year) => {
+  let array = []
+  if (!movies.length) {
+    throw "Movies array is empty"
+  }
+  let finding = movies.filter(movie => Number(movie.released.substring(7)) <= year)
+  return finding || array
+}
 
 /**
  * checkMinMetascores()
