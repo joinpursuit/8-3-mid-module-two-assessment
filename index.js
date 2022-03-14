@@ -158,7 +158,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  * Returns either true or false depending whether all movies have a minimum metascore. If the movie array is empty, throw an error with a message.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
  * @param {number} metascore - A minimum metascore number. (e.g. 80)
- * @returns {Boolean|Error} An array of movies where the `released` year is equal to or less than the inputted year.
+ * @returns {Boolean|Error} A boolean that indicates whether all movies have a metascore above the minimum threshhold.
  *
  * NOTE: You must use the .every()` method.
  *
@@ -166,6 +166,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
+
 function checkMinMetascores() {}
 
 /**
@@ -192,7 +193,16 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+
+function getRottenTomatoesScoreByMovie(movies) {
+  if (!movies.length) throw 'Error! No movies can be found.';
+  return movies.map((movie) => {
+    let ratedByRottenTomatoesObj = movie.ratings.find((rating) => {
+      return rating.source === 'Rotten Tomatoes';
+    });
+    return { [movie.title]: ratedByRottenTomatoesObj.value };
+  });
+}
 
 // Do not change anything below this line.
 module.exports = {
