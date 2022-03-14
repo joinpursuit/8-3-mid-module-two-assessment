@@ -41,7 +41,8 @@ function getAllMovieTitles(movies) {
 /**
  * checkIfAnyMovieHasRating()
  * -----------------------------
- * Returns a boolean, representing whether or not any of the movies has been given the provided rating. If the inputted `movies` array is empty, throw an error with a message.
+ * Returns a boolean, representing whether or not any of the movies has been given the provided rating. 
+ * If the inputted `movies` array is empty, throw an error with a message.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
  * @param {string} [rating="G"] - A movie rating. Defaults to "G".
  * @returns {boolean|Error} Returns `true` if a movie exists in the list with the given rating, otherwise returns `false`.
@@ -56,7 +57,13 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating='G') {
+  if(movies.length !== 0){
+    return movieTitles = movies.some((movie) => movie.rated === rating)
+  }else{
+    throw 'Error: the Movie list is empty';
+  }
+}
 
 /**
  * findById()
