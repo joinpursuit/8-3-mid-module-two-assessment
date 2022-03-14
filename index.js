@@ -83,23 +83,24 @@ function checkIfAnyMovieHasRating(movies, rating='G') {
     };
  */
 function findById(movies, id) {
-  let moviesById = {};
+  let movieById = {};
   if(movies.length !== 0){
-    moviesById = movies.find(movie => movie.imdbID === id);
+    movieById = movies.find(movie => movie.imdbID === id);
     // Validating if any movie match with the Id provided
-    if(moviesById === undefined){
-      moviesById = null;  
+    if(movieById === undefined){
+      movieById = null;  
     }
   }else{
     throw 'Error: the Movie list is empty';
   }
-  return moviesById;
+  return movieById;
 }
 
 /**
  * filterByGenre()
  * -----------------------------
- * Returns all movie objects with a matching genre. Case-insensitive. If the inputted `movies` array is empty, throw an error with a message. If no movies match the inputted `genre`, return `[]`.
+ * Returns all movie objects with a matching genre. Case-insensitive. 
+ * If the inputted `movies` array is empty, throw an error with a message. If no movies match the inputted `genre`, return `[]`.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
  * @param {string} genre - The genre of a movie. (e.g. "Fantasy")
  * @returns {Object[]|Error} An array of movies where at least one of the genres matches the `genre` inputted.
@@ -118,7 +119,20 @@ function findById(movies, id) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  let moviesByGenre = {};
+  if(movies.length !== 0){
+    moviesByGenre = movies.filter(movie => ((movie.genre).toLowerCase()).includes(genre.toLowerCase()));
+    //console.log(moviesByGenre)
+    // Validating if any movie match with the Id provided
+    if(moviesByGenre === undefined){
+      moviesByGenre = [];  
+    }
+  }else{
+    throw 'Error: the Movie list is empty';
+  }
+  return moviesByGenre;
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -144,7 +158,9 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+
+}
 
 /**
  * checkMinMetascores()
@@ -160,12 +176,15 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
  * -----------------------------
- * Transform each movie, returning an array of objects where the key is the title of the movie and the value is the score received from Rotten Tomatoes. If there are no movies, throw an error with a message.
+ * Transform each movie, returning an array of objects where the key is the title of the movie and the value is the score received from Rotten Tomatoes. 
+ * If there are no movies, throw an error with a message.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
  * @returns {Object[]|Error} An array of movie objects where the key is the movie title and the value is the score received from Rotten Tomatoes.
  * 
@@ -186,7 +205,9 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+
+}
 
 // Do not change anything below this line.
 module.exports = {
