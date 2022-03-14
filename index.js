@@ -31,7 +31,7 @@ const exampleMovies = require("./movies");
     ];
  */
 function getAllMovieTitles(movies) {
-  if (movies.length === 0) {
+  if (!movies.length) {
     throw "No movies available.";
   }
   return movies.map((movie) => movie.title);
@@ -56,7 +56,7 @@ function getAllMovieTitles(movies) {
  *  //> false
  */
 function checkIfAnyMovieHasRating(movies, rating = "G") {
-  if (movies.length === 0) {
+  if (!movies.length) {
     throw "No movies available.";
   }
   return movies.some((movie) => movie.rated === rating);
@@ -79,7 +79,7 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
     };
  */
 function findById(movies, id) {
-  if (movies.length === 0) {
+  if (!movies.length) {
     throw "No movies available.";
   }
   const movieWithId = movies.find((element) => element.imdbID === id);
@@ -111,7 +111,13 @@ function findById(movies, id) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if (!movies.length) {
+    throw "No movies available.";
+  }
+  genre = genre[0] + genre.slice(1).toLowerCase();
+  return movies.filter((movie) => movie.genre.includes(genre));
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
