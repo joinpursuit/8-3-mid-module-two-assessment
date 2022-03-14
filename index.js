@@ -116,7 +116,11 @@ function findById(movies, id) {
  *  //> []
  */
 function filterByGenre(movies, genre) {
- 
+  if (movies.length === 0) 
+    throw "error";
+    return movies.filter((movie) => {
+      return movie.genre.toLowerCase().includes(genre.toLowerCase())
+    });
 }
 
 /**
