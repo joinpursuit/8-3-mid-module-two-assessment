@@ -160,7 +160,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  */
 function checkMinMetascores(movies, score) {
   if (!movies.length) throw 'Error!! Movies array is empty ,movies not found';
-  return movies.every((movie) => movie.metascore >= score);
+  return movies.every((movie) => Number(movie.metascore) >= score);
 }
 
 /**
