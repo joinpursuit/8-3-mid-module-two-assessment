@@ -117,7 +117,7 @@ const filterByGenre = (movies, genre) => {
     throw 'Error: No movies found';
   }
   return (movieMatchingGenre = movies.filter((movie) =>
-    movie.genre.toLowerCase().includes(genre.toLowerCase),
+    movie.genre.toLowerCase().includes(genre.toLowerCase()),
   ));
 };
 
@@ -145,7 +145,12 @@ const filterByGenre = (movies, genre) => {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+const getAllMoviesReleasedAtOrBeforeYear = (movies, year) => {
+  if (movies.length < 1) {
+    throw 'Error: No movies found';
+  }
+  return movies.filter((movie) => movie.released.slice(-5) <= year);
+};
 
 /**
  * checkMinMetascores()
