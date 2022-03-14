@@ -3,7 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
-const exampleMovies = require("./movies");
+const exampleMovies = require('./movies');
 // Do not change the line above.
 
 /**
@@ -31,14 +31,14 @@ const exampleMovies = require("./movies");
     ];
  */
 function getAllMovieTitles(movies) {
-  let movieTitles = []
-   movies.map(movie => {
-movieTitles.push(movie.title)
-  })
-if (!movies.length){
-  throw `No movie with this title exist`  
-}
-return movieTitles
+  let movieTitles = [];
+  movies.map((movie) => {
+    movieTitles.push(movie.title);
+  });
+  if (!movies.length) {
+    throw `No movie with this title exist`;
+  }
+  return movieTitles;
 }
 /**
  * checkIfAnyMovieHasRating()
@@ -58,8 +58,13 @@ return movieTitles
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {
-  
+function checkIfAnyMovieHasRating(movies) {
+  let hasRating = movies.some((movie) => movie.rating === 'G');
+  if (!movies.length) {
+    throw `This movie does not exist`;
+  }
+
+  return hasRating;
 }
 
 /**
@@ -78,7 +83,15 @@ function checkIfAnyMovieHasRating() {
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  let findId = movies.find((movie) => movie.imdbID === id);
+
+  if (!movies.length) {
+    throw `Could not find movie with id: ${id}`;
+  }
+
+  return findId || null;
+}
 
 /**
  * filterByGenre()
@@ -102,7 +115,7 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies) {}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
