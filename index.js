@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -92,12 +93,12 @@ let ratingToUse = rating ? rating : "G" // checking if rating exists and if it d
  */
 function findById(movies, id) {
 if (!movies.length) {
-    throw "Movie could not be found."
+    throw "Movie could not be found." //throw error created should there be no movies
 }
   
 return movies.find((movie) => {
-    return 
-      })
+    return movie.imdbID === id
+      }) || null //if the given movie via its ID cannot be found, return null
 }
 
 /**
@@ -122,7 +123,14 @@ return movies.find((movie) => {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if (!movies.length) {
+    throw "Movie cannot be found."
+  }
+  return movies.filter((movie) => {
+    return movie.genre
+  })
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
