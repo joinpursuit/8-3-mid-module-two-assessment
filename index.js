@@ -159,7 +159,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
     const movieReleaseYear = new Date(movie.released).toString().split(" ")[3];
     return movieReleaseYear <= year;
   });
-}
+};
 
 /**
  * checkMinMetascores()
