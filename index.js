@@ -158,7 +158,12 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, score) {
+  if (!movies.length) throw 'Error!! Movies array is empty ,movies not found';
+  return movies.every((movie) =>
+    movie.metascore >= 60 ? true : movie.metascore <= 90 ? false : ''
+  );
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -184,7 +189,27 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+// function getRottenTomatoesScoreByMovie(movies) {
+//   if (!movies.length) throw 'Error!! Movies array is empty ,movies not found';
+
+//   return movies.map((movie) => {
+//     rottenTomatoValue = movie.ratings.find((rating) => {
+//       rating.source === 'Rotten Tomatoes';
+//     });
+//     return { [movie.title]: rottenTomatoValue.value };
+//   });
+// }
+function getRottenTomatoesScoreByMovie(movies) {
+  if (!movies.length) throw 'Error!! Movies array is empty ,movies not found';
+
+  return movies.map((movie) => {
+    rottenTomatoValue = movie.ratings.find(
+      (rating) => rating.source == 'Rotten Tomatoes'
+    );
+    return { [movie.title]: rottenTomatoValue.value };
+  });
+}
+
 
 // Do not change anything below this line.
 module.exports = {
