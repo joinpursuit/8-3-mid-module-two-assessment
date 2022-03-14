@@ -125,6 +125,7 @@ function filterByGenre(movies, genre) {
   }
 
   return movies.filter((movie) => {
+    //make movieGenre and genre case insensitive
     let movieGenre = movie.genre.toLowerCase();
     return movieGenre.includes(genre.toLowerCase());
   });
