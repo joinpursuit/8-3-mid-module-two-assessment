@@ -53,7 +53,10 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = 'G') {
+  if (!movies.length) throw 'Error!! Movies array is empty ,movies not found';
+  return movies.some((movie) => movie.rated === rating);
+}
 
 /**
  * findById()
@@ -71,7 +74,9 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+ 
+}
 
 /**
  * filterByGenre()
