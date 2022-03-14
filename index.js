@@ -208,7 +208,6 @@ function getRottenTomatoesScoreByMovie(movies) {
       return mov.source === "Rotten Tomatoes";
     });
     value = value.value;
-    console.log(value);
     obj[movie.title] = value;
     return obj;
   });
