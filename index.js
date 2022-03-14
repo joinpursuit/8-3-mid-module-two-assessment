@@ -84,7 +84,11 @@ function checkIfAnyMovieHasRating(movies, rating="G") {
     };
  */
 function findById(movies, id) {
-  
+  if (movies.length === 0) 
+    throw "error";
+    return movies.find((movie) => {
+      return movie.imdbID ===id || null;
+    });
 }
 
 
