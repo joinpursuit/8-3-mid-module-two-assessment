@@ -57,9 +57,12 @@ function getAllMovieTitles(movies) {
  *  //> false
  */
 function checkIfAnyMovieHasRating(movies, rating = 'G') {
+  // checking if the movies array is empty
   if (movies.length < 1) {
+    // throwing an error
     throw 'There are no movies.'
   } else {
+    // using .some() to check if the rating of the movie matches the specified rating
     return movies.some(movie => movie.rated === rating)
   }
 }
@@ -84,7 +87,9 @@ function findById(movies, id) {
   if (movies.length < 1) {
     throw 'There are no movies.'
   } else {
+    // using .find() to compare the imdbID with the specified id to see if they match
     const movieFound = movies.find(movie => movie.imdbID === id)
+    // if statement to check if movieFound is undefined because .find() returns undefined if it cannot find the target matching the condition given
     if (movieFound === undefined) {
       return null
     } else {
@@ -119,9 +124,12 @@ function filterByGenre(movies, genre) {
   if (movies.length < 1) {
     throw 'There are no movies.'
   } else {
+    // using .filter() to filter out the movies that don't match the genre
     return movies.filter(movie => {
+      // setting the specified genre and the genres inside of movie.genre to lowercase so they are case-insensitive
       let genreArr = movie.genre.toLowerCase().split(', ')
       genreLowerCase = genre.toLowerCase()
+      // using .find() to find all the genres that match the specified genre
       return genreArr.find(gen => gen === genreLowerCase)
     })
   }
@@ -156,8 +164,11 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
     throw 'There are no movies.'
   } else {
     return movies.filter(movie => {
+      // creating a new array that splits the movie.released single string into an array
       let releasedArr = movie.released.split(' ')
+      // seeing if the last element of the array "releasedArr" is less than or equal to the specified year
       if (Number(releasedArr[2]) <= year) {
+        // returning the movie after the condition is met
         return movie
       }
     })
