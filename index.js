@@ -155,6 +155,15 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   }
 }
 
+const yearChecker = (movie) => {
+  movieYear = movie.released.split(" ")[2];
+  console.log(movieYear);
+};
+
+console.log(yearChecker(exampleMovies[0]));
+console.log(yearChecker(exampleMovies[1]));
+console.log(yearChecker(exampleMovies[2]));
+
 /**
  * checkMinMetascores()
  * -----------------------------
