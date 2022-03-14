@@ -32,13 +32,13 @@ const exampleMovies = require("./movies");
  */
 function getAllMovieTitles(movies) {
   if (!movies.length) {
-    throw `The 'input array is empty`
+    throw `The 'input array is empty`;
   }
   let movieTitles = [];
   movieTitles = movies.map((movie) => {
-    return movie.title
-  })
-  return movieTitles
+    return movie.title;
+  });
+  return movieTitles;
 }
 
 /**
@@ -61,14 +61,14 @@ function getAllMovieTitles(movies) {
  */
 function checkIfAnyMovieHasRating(movies, rating = "G") {
   if (!movies.length) {
-    throw `The 'input array is empty`
+    throw `The 'input array is empty`;
   }
   const ratedMovies = movies.some((movie) => {
     if (movie.rated === rating) {
       return true;
     }
     return false;
-  })
+  });
   return ratedMovies;
 }
 
@@ -90,15 +90,16 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
  */
 function findById(movies, id) {
   if (!movies.length) {
-    throw `the input array is empty`
+    throw `the input array is empty`;
   }
-
-  const movieFound = movies.find((movie) => {
+  let movieFound = movies.find((movie) => {
     if (movie.imdbID === id) {
       return movie;
     }
-    return null;
-  }) 
+  });
+  if (movieFound === undefined) {
+    movieFound = null;
+  }
   return movieFound;
 }
 
@@ -133,14 +134,14 @@ function findById(movies, id) {
  */
 function filterByGenre(movies, genre) {
   if (!movies.length) {
-    throw `the input array is empty`
+    throw `the input array is empty`;
   }
-  let returnArray = []
+  let returnArray = [];
   const filteredMoviesArray = movies.filter((movie) => {
     if (movie.genre.includes(genre)) {
       return returnArray.push(movie.title);
     }
-  })
+  });
   return filteredMoviesArray;
 }
 
@@ -170,9 +171,8 @@ function filterByGenre(movies, genre) {
  */
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   if (!movies.length) {
-    throw `the input array is empty`
+    throw `the input array is empty`;
   }
-
 }
 
 /**
@@ -191,15 +191,15 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  */
 function checkMinMetascores(movies, metascore) {
   if (!movies.length) {
-    throw `input array is empty`
+    throw `input array is empty`;
   }
   const isAboveMinMetascores = movies.every((movie) => {
-  if (movie.metascore > metascore) {
-    return true;
-  }
-  return false;
-  })
-  return isAboveMinMetascores
+    if (movie.metascore > metascore) {
+      return true;
+    }
+    return false;
+  });
+  return isAboveMinMetascores;
 }
 
 /**
