@@ -55,7 +55,14 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating="G") {
+  if (!movies.length) {
+    throw "ERROR: movie list is empty";
+  } 
+   return movies.some((movie) => {
+    return movie.rated === rating;
+  });
+}
 
 /**
  * findById()
