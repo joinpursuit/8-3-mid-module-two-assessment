@@ -85,6 +85,13 @@ function findById(movies, id) {
   if (!movies.length) {
     throw `There are no movies in ${movies}`;
   }
+  idSearch = (movie) => movie.imdbID === id;
+
+  if (!movies.find(idSearch)) {
+    return null;
+  } else {
+    return movies.find(idSearch);
+  }
 }
 
 /**
