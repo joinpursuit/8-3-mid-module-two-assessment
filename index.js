@@ -92,14 +92,14 @@ function findById(movies, id) {
   const matchingMovieById = movies.find((movie) => {
     if (movie.imdbID === id) {
       return movie.title;
-    }
+    } // Checks and returns movie with matching inputted id
   });
 
   if (matchingMovieById) {
     return matchingMovieById;
   } else {
     return null;
-  }
+  } // Returns matching movie title or null
 }
 
 /**
