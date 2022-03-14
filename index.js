@@ -92,9 +92,6 @@ function findById(movies, id) {
   const found = movies.find((movie) => {
     if (movie.imdbID === id) {
       return movie;
-    } 
-    if (movie.imdbID !== id) {
-      return null;
     }
   });
   if (movies.length === 0) {
@@ -105,10 +102,6 @@ function findById(movies, id) {
   }
   return found;
 }
-// (movies.imdbID !== id)
-// else if (!movie.imdbID !== id) {
-//return found || null;
-//}
 
 /**
  * filterByGenre()
@@ -134,7 +127,7 @@ function findById(movies, id) {
  */
 function filterByGenre(movies, genre) {
   const filtered = movies.filter((movie) => {
-    if (movie.genre.includes(genre)) {
+    if (movie.genre.toLowerCase().includes(genre.toLowerCase())) {
       return movie;
     }
   });
@@ -143,6 +136,17 @@ function filterByGenre(movies, genre) {
   }
   return filtered;
 }
+/*
+   const filtered = movies.filter((movie) => {
+  if (movie.genre.includes(genre)) {
+    return movie;
+  }
+});
+if (movies.length === 0) {
+  throw "Error";
+}
+return filtered;
+*/
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
