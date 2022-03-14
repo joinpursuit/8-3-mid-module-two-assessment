@@ -56,7 +56,14 @@ const getAllMovieTitles = (movies) =>{
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-const checkIfAnyMovieHasRating = () => {}
+const checkIfAnyMovieHasRating = (movies, rating = "G") => {
+  if (!movies.length) {
+    throw "No movies"
+  }
+  let checkRating = movies.some(movie => movie.rated === rating)
+ 
+  return checkRating 
+}
 
 /**
  * findById()
@@ -78,8 +85,9 @@ const findById = (movies, id) =>{
   if (!movies.length) {
     throw "Theres no imdbID"
   } 
-  let finding = movies.find(movie => movie.imdbID === id)
-  return finding || null
+  let findingID = movies.find(movie => movie.imdbID === id)
+
+  return findingID || null
 }
 
 /**
@@ -108,8 +116,9 @@ const filterByGenre = (movies, genre) => {
   if (!movies.length) {
     throw "No matching genre"
   }
-  let finding = movies.filter(movie => movie.genre.toUpperCase().includes(genre.toUpperCase()))
-  return finding 
+  let findGenre = movies.filter(movie => movie.genre.toUpperCase().includes(genre.toUpperCase()))
+
+  return findGenre 
 }
 
 /**
@@ -141,8 +150,9 @@ const getAllMoviesReleasedAtOrBeforeYear = (movies, year) => {
   if (!movies.length) {
     throw "Movies array is empty"
   }
-  let finding = movies.filter(movie => Number(movie.released.substring(7)) <= year)
-  return finding || array
+  let findYear = movies.filter(movie => Number(movie.released.slice(7)) <= year)
+
+  return findYear || array
 }
 
 /**
@@ -151,7 +161,7 @@ const getAllMoviesReleasedAtOrBeforeYear = (movies, year) => {
  * Returns either true or false depending whether all movies have a minimum metascore. If the movie array is empty, throw an error with a message.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
  * @param {number} metascore - A minimum metascore number. (e.g. 80)
- * @returns {Boolean|Error} An array of movies where the `released` year is equal to or less than the inputted year.
+ * @returns {Boolean|Error} A boolean that indicates whether all movies have a metascore above the minimum threshhold.
  *
  * NOTE: You must use the .every()` method.
  *
@@ -159,8 +169,7 @@ const getAllMoviesReleasedAtOrBeforeYear = (movies, year) => {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
-
+const checkMinMetascores = (movies, metascore) => {}
 /**
  * getRottenTomatoesScoreByMovie()
  * -----------------------------
@@ -185,7 +194,7 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {}
 
 // Do not change anything below this line.
 module.exports = {
