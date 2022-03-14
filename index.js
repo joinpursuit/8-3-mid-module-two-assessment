@@ -110,7 +110,12 @@ function findById(movies, id) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  //   if (!movies.length) {
+  //     throw "Error: No movies";
+  //   }
+  //   return movies.filter((movie) => movie.genre === genre);
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -136,7 +141,12 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (!movies.length) {
+    throw "Error: No movies";
+  }
+  return movies.filter((movie) => movie.year.includes(year));
+}
 
 /**
  * checkMinMetascores()
@@ -152,7 +162,12 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  if (!movies.length) {
+    throw "Error: No movies";
+  }
+  return movies.every((movie) => movie.metascore > metascore);
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
