@@ -31,12 +31,22 @@ const exampleMovies = require('./movies');
     ];
  */
 
-function getAllMovieTitles(movies) {
+// function getAllMovieTitles(movies) {
+//   if (!movies.length) throw 'Error! No movies can be found.';
+//   return movies.map((movie) => {
+//     return movie.title;
+//   });
+// }
+
+//Using the arrow function:
+const getAllMovieTitles = (movies) => {
   if (!movies.length) throw 'Error! No movies can be found.';
   return movies.map((movie) => {
     return movie.title;
   });
-}
+};
+
+//console.log(getAllMovieTitles(exampleMovies))
 
 /**
  * checkIfAnyMovieHasRating()
@@ -57,12 +67,22 @@ function getAllMovieTitles(movies) {
  *  //> false
  */
 
-function checkIfAnyMovieHasRating(movies, rating = 'G') {
+// function checkIfAnyMovieHasRating(movies, rating = 'G') {
+//   if (!movies.length) throw 'Error! No movies can be found.';
+//   return movies.some((movie) => {
+//     return movie.rated === rating;
+//   });
+// }
+
+//Using the arrow function:
+const checkIfAnyMovieHasRating = (movies, rating = 'G') => {
   if (!movies.length) throw 'Error! No movies can be found.';
   return movies.some((movie) => {
     return movie.rated === rating;
   });
-}
+};
+
+//console.log(checkIfAnyMovieHasRating(exampleMovies, 'R'));
 
 /**
  * findById()
@@ -81,13 +101,24 @@ function checkIfAnyMovieHasRating(movies, rating = 'G') {
     };
  */
 
-function findById(movies, id) {
+// function findById(movies, id) {
+//   if (!movies.length) throw 'Error! No movies can be found.';
+//   let foundMovie = movies.find((movie) => {
+//     return movie.imdbID === id;
+//   });
+//   return foundMovie || null;
+// }
+
+//Using the arrow function:
+const findById = (movies, id) => {
   if (!movies.length) throw 'Error! No movies can be found.';
   let foundMovie = movies.find((movie) => {
     return movie.imdbID === id;
   });
   return foundMovie || null;
-}
+};
+
+//console.log(findById(exampleMovies, 'tt1979376'));
 
 /**
  * filterByGenre()
@@ -112,13 +143,23 @@ function findById(movies, id) {
  *  //> []
  */
 
-function filterByGenre(movies, genre) {
+// function filterByGenre(movies, genre) {
+//   if (!movies.length) throw 'Error! No movies can be found.';
+//   let filteredMovie = movies.filter((movie) => {
+//     return movie.genre.toLowerCase().includes(genre.toLowerCase());
+//   });
+//   return filteredMovie;
+// }
+
+//Using the arrow function:
+const filterByGenre = (movies, genre) => {
   if (!movies.length) throw 'Error! No movies can be found.';
-  let filteredMovie = movies.filter((movie) => {
+  return movies.filter((movie) => {
     return movie.genre.toLowerCase().includes(genre.toLowerCase());
   });
-  return filteredMovie || [];
-}
+};
+
+//console.log(filterByGenre(exampleMovies, 'Horror'));
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -145,12 +186,21 @@ function filterByGenre(movies, genre) {
     ];
  */
 
-function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
-  if (!movies.length) throw 'Error! No movies can be found.';
+// function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+//   if (!movies.length) throw 'Error! No movies can be found.';
+//   return movies.filter((movie) => {
+//     return movie.released.slice(-4) <= year;
+//   });
+// }
+
+//Using the arrow function:
+const getAllMoviesReleasedAtOrBeforeYear = (movies, year) => {
   return movies.filter((movie) => {
     return movie.released.slice(-4) <= year;
   });
-}
+};
+
+//console.log(getAllMoviesReleasedAtOrBeforeYear(exampleMovies, 2000));
 
 /**
  * checkMinMetascores()
@@ -167,12 +217,21 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  //>  false
  */
 
-function checkMinMetascores(movies, metascore) {
-  if (!movies.length) throw 'Error! No movies can be found.';
+// function checkMinMetascores(movies, metascore) {
+//   if (!movies.length) throw 'Error! No movies can be found.';
+//   return movies.every((movie) => {
+//     return movie.metascore >= metascore ? true : false;
+//   });
+// }
+
+//Using the arrow function:
+const checkMinMetascores = (movies, metascore) => {
   return movies.every((movie) => {
-    return movie.metascore >= metascore ? true : false
-  })
-}
+    return movie.metascore >= metascore ? true : false;
+  });
+};
+
+//console.log(checkMinMetascores(exampleMovies, 60));
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -199,7 +258,18 @@ function checkMinMetascores(movies, metascore) {
     ];
  */
 
-function getRottenTomatoesScoreByMovie(movies) {
+// function getRottenTomatoesScoreByMovie(movies) {
+//   if (!movies.length) throw 'Error! No movies can be found.';
+//   return movies.map((movie) => {
+//     let ratedByRottenTomatoesObj = movie.ratings.find((rating) => {
+//       return rating.source === 'Rotten Tomatoes';
+//     });
+//     return { [movie.title]: ratedByRottenTomatoesObj.value };
+//   });
+// }
+
+//Using the arrow function:
+const getRottenTomatoesScoreByMovie = (movies) => {
   if (!movies.length) throw 'Error! No movies can be found.';
   return movies.map((movie) => {
     let ratedByRottenTomatoesObj = movie.ratings.find((rating) => {
@@ -207,7 +277,9 @@ function getRottenTomatoesScoreByMovie(movies) {
     });
     return { [movie.title]: ratedByRottenTomatoesObj.value };
   });
-}
+};
+
+//console.log(getRottenTomatoesScoreByMovie(exampleMovies));
 
 // Do not change anything below this line.
 module.exports = {
