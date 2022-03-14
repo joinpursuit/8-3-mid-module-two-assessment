@@ -89,18 +89,12 @@ function findById(movies, id) {
     throw "Error: movies array is empty";
   }
 
-  //if the id does not match any movie, return null
-  if (
-    !movies.some((movie) => {
-      return movie.imdbID === id;
-    })
-  ) {
-    return null;
-  }
-
-  return movies.find((movie) => {
+  //find() will return undefined if can't find the movie
+  let movieFind = movies.find((movie) => {
     return movie.imdbID === id;
   });
+
+  return movieFind === undefined ? null : movieFind;
 }
 
 /**
