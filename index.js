@@ -34,6 +34,7 @@ function getAllMovieTitles(movies) {
   if (movies.length < 1) {
     throw 'There are no movies.'
   } else {
+    // using .map() to create a new array with the movie titles
     return movies.map(movie => movie.title)
   }
 }
@@ -126,11 +127,11 @@ function filterByGenre(movies, genre) {
   } else {
     // using .filter() to filter out the movies that don't match the genre
     return movies.filter(movie => {
-      // setting the specified genre and the genres inside of movie.genre to lowercase so they are case-insensitive
+      // setting the specified genre and the genres inside the elements of movies to lowercase so they are case-insensitive
       let genreArr = movie.genre.toLowerCase().split(', ')
       genreLowerCase = genre.toLowerCase()
       // using .find() to find all the genres that match the specified genre
-      return genreArr.find(gen => gen === genreLowerCase)
+      return genreArr.find(matchingGenre => matchingGenre === genreLowerCase)
     })
   }
 }
@@ -164,9 +165,9 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
     throw 'There are no movies.'
   } else {
     return movies.filter(movie => {
-      // creating a new array that splits the movie.released single string into an array
+      // creating a new array that splits the released key's single string value into an array of strings
       let releasedArr = movie.released.split(' ')
-      // seeing if the last element of the array "releasedArr" is less than or equal to the specified year
+      // seeing if the last element of the array "releasedArr" (the year) is less than or equal to the specified year
       if (Number(releasedArr[2]) <= year) {
         // returning the movie after the condition is met
         return movie
@@ -193,6 +194,7 @@ function checkMinMetascores(movies, metascore) {
   if (movies.length < 1) {
     throw 'There are no movies.'
   } else {
+    // using .every() to see if the current metascore is greater than the specified metascore 
     return movies.every(movie => movie.metascore > metascore)
   }
 }
@@ -225,15 +227,19 @@ function getRottenTomatoesScoreByMovie(movies) {
   if (movies.length < 1) {
     throw 'There are no movies.'
   } else {
+    // using .map() to create a new array
     return movies.map(movie => {
+      // using .find() to find all the sources that have a value of "Rotten Tomatoes" inside the current movie's ratings array
       let rating = movie.ratings.find(rate => {
         if (rate.source === 'Rotten Tomatoes') {
           return rate.value
         }
       })
+      // creating a new obj that has that current movie's title as the key and the value is the value of the source "Rotten Tomatoes"
       let movieObj = {
         [movie.title]: rating.value
       }
+      // returning the movieObj
       return movieObj
     })
   }
