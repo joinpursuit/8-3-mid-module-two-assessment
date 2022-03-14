@@ -153,13 +153,13 @@ function filterByGenre(movies, genre) {
  */
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   if (!movies.length) {
-    throw "ERROR: Movie list is empty.";
+    throw "ERROR: movie list is empty.";
   } 
   return movies.filter((movie) => {
     const movieReleaseYear = new Date(movie.released).toString().split(" ")[3];
     return movieReleaseYear <= year;
   });
-};
+}
 
 /**
  * checkMinMetascores()
