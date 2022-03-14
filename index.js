@@ -142,7 +142,13 @@ const filterByGenre = (movies, genre) => {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+const getAllMoviesReleasedAtOrBeforeYear = (movies, year) => {
+  if (!movies.length) {
+    throw 'Error: Movies array is empty';
+  }
+  return movies.filter((movie) => movie.released.slice(-4) <= year);
+};
+// .slice(-4) to grab the last 4 characters of the movie.released string
 
 /**
  * checkMinMetascores()
