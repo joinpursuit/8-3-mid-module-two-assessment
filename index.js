@@ -67,7 +67,7 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
     if (movie.rated === rating) {
       return true;
     }
-    else return false;
+    return false;
   })
   return ratedMovies;
 }
@@ -88,7 +88,19 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if (!movies.length) {
+    throw `the input array is empty`
+  }
+
+  const movieFound = movies.find((movie) => {
+    if (movie.imdbID === id) {
+      return movie;
+    }
+    return null;
+  }) 
+  return movieFound;
+}
 
 /**
  * filterByGenre()
@@ -111,8 +123,26 @@ function findById() {}
  * EXAMPLE:
  *  filterByGenre(movies, "Horror")
  *  //> []
+ * inputs? movies and genre
+ * movie is an array of objects
+ * genre is a string
+ * see if our input genre matches a genre inside movies.genre (string)
+ * how do we match genre? split movies.genre string into an array? then compare it with the input.
+ * if they match, return an array of objects 
+ * returns an array of objects
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if (!movies.length) {
+    throw `the input array is empty`
+  }
+  let returnArray = []
+  const filteredMoviesArray = movies.filter((movie) => {
+    if (movie.genre.includes(genre)) {
+      return returnArray.push(movie.title);
+    }
+  })
+  return filteredMoviesArray;
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -138,7 +168,12 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (!movies.length) {
+    throw `the input array is empty`
+  }
+
+}
 
 /**
  * checkMinMetascores()
@@ -146,7 +181,7 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  * Returns either true or false depending whether all movies have a minimum metascore. If the movie array is empty, throw an error with a message.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
  * @param {number} metascore - A minimum metascore number. (e.g. 80)
- * @returns {Boolean|Error} An array of movies where the `released` year is equal to or less than the inputted year.
+ * @returns {Boolean|Error} A boolean that indicates whether all movies have a metascore above the minimum threshhold
  *
  * NOTE: You must use the .every()` method.
  *
@@ -154,7 +189,18 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  if (!movies.length) {
+    throw `input array is empty`
+  }
+  const isAboveMinMetascores = movies.every((movie) => {
+  if (movie.metascore > metascore) {
+    return true;
+  }
+  return false;
+  })
+  return isAboveMinMetascores
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
