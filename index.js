@@ -7,7 +7,7 @@ const exampleMovies = require("./movies");
 // Do not change the line above.
 function checkMoviesArray(movies) {
   if (movies.length === 0) {
-    throw "Error";
+    throw "Error: Movies array is empty!";
   }
 }
 /**
