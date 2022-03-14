@@ -92,15 +92,17 @@ function findById(movies, id) {
   const found = movies.find((movie) => {
     if (movie.imdbID === id) {
       return movie;
-     } //else if (movies.imdbID !== id) {
-    //   return null;
-    // }
+    }
+    if (movie.imdbID !== id) {
+      return null;
+    }
   });
   if (movies.length === 0) {
-    throw "error";
-  } 
+    throw "Error";
+  }
   return found;
 }
+// (movies.imdbID !== id)
 
 /**
  * filterByGenre()
@@ -125,15 +127,16 @@ function findById(movies, id) {
  *  //> []
  */
 function filterByGenre(movies, genre) {
-  const genreFilter = movies.filter((movie) => {
-    if (movie.genre === genre) {
+  genre = genre.toLowerCase
+  const filtered = movies.filter((movie) => {
+    if (movie.genre.includes(genre)) {
       return movie;
     }
   });
-  if (movies.length === 0){
-    throw "Error"
+  if (movies.length === 0) {
+    throw "Error";
   }
-  return genreFilter;
+  return filtered;
 }
 
 /**
@@ -160,7 +163,14 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  const allReleased = movies.filter((movie) => {
+    if (movie.released >= year) {
+      return movie;
+    }
+  });
+  return released;
+}
 
 /**
  * checkMinMetascores()
@@ -181,7 +191,7 @@ function checkMinMetascores(movies, metascore) {
     if (metascore >= 60 && metascore <= 89) {
       return movie;
     } else if (metascore >= 90) {
-      return falseg;
+      return false;
     }
   });
   if (movies.length === 0) {
@@ -214,7 +224,11 @@ function checkMinMetascores(movies, metascore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  //   let score = []
+  //   score = movies.map((movie) => {
+  //   }).find ()
+}
 
 // Do not change anything below this line.
 module.exports = {
