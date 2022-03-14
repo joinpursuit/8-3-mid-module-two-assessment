@@ -30,7 +30,15 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  if (movies.length === 0) 
+    throw "error"
+    return movies.map((movie) => {
+      return movie.title;
+    });
+} 
+
+
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +58,10 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating="G") {
+ 
+} 
+
 
 /**
  * findById()
@@ -68,7 +79,11 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  
+}
+
+
 
 /**
  * filterByGenre()
@@ -92,7 +107,9 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+ 
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +135,9 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +153,9 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+ 
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +181,9 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  
+}
 
 // Do not change anything below this line.
 module.exports = {
