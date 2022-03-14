@@ -76,8 +76,8 @@ function checkIfAnyMovieHasRating(movies, rating = 'G') {
  */
 function findById(movies, id) {
   if (!movies.length) throw 'Error!! Movies array is empty ,movies not found';
-  let matchingImbdID = movies.find((movie) => movie.imdbID === id);
-  return matchingImbdID || null;
+  let moviesWithMatchingImbdID = movies.find((movie) => movie.imdbID === id);
+  return moviesWithMatchingImbdID || null;
 }
 
 /**
@@ -102,7 +102,14 @@ function findById(movies, id) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if (!movies.length) throw 'Error!! Movies array is empty ,movies not found';
+  let moviesWithMatchingGenre = [];
+  moviesWithMatchingGenre = movies.filter((movie) =>
+    movie.genre.toLowerCase().includes(genre.toLowerCase())
+  );
+  return moviesWithMatchingGenre;
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
