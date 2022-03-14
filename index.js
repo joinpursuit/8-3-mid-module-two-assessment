@@ -34,6 +34,9 @@ function getAllMovieTitles(movies) {
   if (!movies.length) {
     throw `There are no movies in ${movies}`;
   }
+  const extractMovieTitles = (movie) => movie.title;
+
+  return movies.map(extractMovieTitles);
 }
 
 /**
