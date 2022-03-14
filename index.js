@@ -181,6 +181,7 @@ function checkMinMetascores(movies, metascore) {
     throw `There are no movies in ${movies}`;
   }
   const metaCondition = (movie) => Number(movie.metascore) > metascore;
+  return movies.every(metaCondition);
 }
 
 /**
