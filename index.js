@@ -1,9 +1,13 @@
-/*
-  Do not change the line below. If you'd like to run code from this file, you may use the `exampleMovies` variable below to gain access to an array of movies.
+/**
+ * /*
+ *   Do not change the line below. If you'd like to run code from this file, you may use the `exampleMovies` variable below to gain access to an array of movies.
+ *
+ *   Keep in mind that your functions must still have and use a parameter for accepting all movies.
+ *
+ * @format
+ */
 
-  Keep in mind that your functions must still have and use a parameter for accepting all movies.
-*/
-const exampleMovies = require("./movies");
+const exampleMovies = require('./movies');
 // Do not change the line above.
 
 /**
@@ -31,10 +35,10 @@ const exampleMovies = require("./movies");
     ];
  */
 function getAllMovieTitles(movies) {
-  if (!movies.length) {
-    throw 'We are sorry there are no movies available at this time'
-  }
-  return movies.map((movie) => movie.title)
+	if (!movies.length) {
+		throw 'We are sorry there are no movies available at this time';
+	}
+	return movies.map((movie) => movie.title);
 }
 
 /**
@@ -55,7 +59,12 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating(movies) {} 
+function checkIfAnyMovieHasRating(movies, rating = 'G') {
+	if (!movies.length) {
+		throw 'We are sorry there are no movies with that rating at this time';
+	}
+	return movies.some((movie) => movie.rated === rating)
+  }
 
 
 /**
@@ -74,7 +83,16 @@ function checkIfAnyMovieHasRating(movies) {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+	if (!movies.length) {
+		throw 'There is no a movie with the selected ID';
+	}
+	let foundID = movies.find((movie) => movie.imdbID.includes(id));
+	if (!foundID) {
+		return null;
+	}
+	return foundID;
+}
 
 /**
  * filterByGenre()
@@ -98,7 +116,15 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+	let genreMatch = [];
+	if (!movies.length) {
+		throw 'Sorry, no movies match the selected genre';
+	}
+	return movies.filter((movie) =>
+		movie.genre.toLowerCase().includes(genre.toLowerCase)
+	);
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -124,7 +150,11 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (!movies.length) {
+    throw 'No moves were released during this year'
+  }
+}
 
 /**
  * checkMinMetascores()
@@ -170,11 +200,11 @@ function getRottenTomatoesScoreByMovie() {}
 
 // Do not change anything below this line.
 module.exports = {
-  getAllMovieTitles,
-  checkIfAnyMovieHasRating,
-  findById,
-  filterByGenre,
-  checkMinMetascores,
-  getAllMoviesReleasedAtOrBeforeYear,
-  getRottenTomatoesScoreByMovie,
+	getAllMovieTitles,
+	checkIfAnyMovieHasRating,
+	findById,
+	filterByGenre,
+	checkMinMetascores,
+	getAllMoviesReleasedAtOrBeforeYear,
+	getRottenTomatoesScoreByMovie,
 };
