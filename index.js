@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -56,7 +57,13 @@ function getAllMovieTitles(movie) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating(movie) {}
+function checkIfAnyMovieHasRating(movie, rating) {
+  let list = movie.some(movies => movies.rated.includes(rating));
+  if (movie.length === 0){
+    throw 'ERROR: No Movies Found'
+ }
+ return list
+}
 
 /**
  * findById()
@@ -74,7 +81,7 @@ function checkIfAnyMovieHasRating(movie) {}
       // Toy Story 4
     };
  */
-function findById(movie) {}
+function findById(movie, id) {}
 
 /**
  * filterByGenre()
@@ -98,7 +105,7 @@ function findById(movie) {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movie, genre) {}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -124,7 +131,7 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear(movie) {}
+function getAllMoviesReleasedAtOrBeforeYear(movie, year) {}
 
 /**
  * checkMinMetascores()
@@ -140,7 +147,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movie) {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores(movie) {}
+function checkMinMetascores(movie, metascore) {}
 
 /**
  * getRottenTomatoesScoreByMovie()
