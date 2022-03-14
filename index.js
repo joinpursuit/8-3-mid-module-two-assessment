@@ -31,8 +31,8 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles(movie) {
-    let list = movie.map((movies) => movies.title);
+function getAllMovieTitles(movies) {
+    let list = movies.map((movie => movie.title));
     if (list.length === 0){
       throw 'Error: No Movies Found'
     }
@@ -57,9 +57,9 @@ function getAllMovieTitles(movie) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating(movie, rating) {
-  let list = movie.some(movies => movies.rated.includes(rating));
-  if (movie.length === 0){
+function checkIfAnyMovieHasRating(movies, rating) {
+  let list = movies.some(movie => movie.rated.includes(rating));
+  if (movies.length === 0){
     throw 'ERROR: No Movies Found'
  }
  return list
@@ -81,7 +81,13 @@ function checkIfAnyMovieHasRating(movie, rating) {
       // Toy Story 4
     };
  */
-function findById(movie, id) {}
+function findById(movies, id) {
+  let list = movies.find(movie => movie.imdbID.includes(id))
+  if (movies.length === 0){
+    throw 'ERROR: No Movies Found'
+  }
+  return list || null
+}
 
 /**
  * filterByGenre()
