@@ -213,12 +213,14 @@ function getRottenTomatoesScoreByMovie(movies) {
     throw `There are no movies in ${movies}`;
   }
   movieObj = (movie) => {
-    return { [movie.title]: movie.ratings[1].value };
+    ratingsArr = movie.ratings;
+    rottenObject = ratingsArr.find((element) => element.value.includes("%"));
+    rottenScore = rottenObject.value;
+    return { [movie.title]: rottenScore };
   };
   return movies.map(movieObj);
 }
 
-console.log(getRottenTomatoesScoreByMovie(exampleMovies));
 // Do not change anything below this line.
 module.exports = {
   getAllMovieTitles,
