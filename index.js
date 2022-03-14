@@ -149,7 +149,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
 		throw `Error: movies array is empty!`;
 	}
 	return movies.filter((movie) => {
-		let releaseYear = movie.released.substring(-4);
+		let releaseYear = movie.released.substring(movie.released.length-4, movie.released.length);
 		return Number(releaseYear) <= year;
 	});
 }
