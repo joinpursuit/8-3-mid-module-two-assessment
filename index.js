@@ -30,7 +30,13 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  if (movies.length < 1) {
+    throw 'There are no movies.'
+  } else {
+    return movies.map(movie => movie.title)
+  }
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +56,13 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = 'G') {
+  if (movies.length < 1) {
+    throw 'There are no movies.'
+  } else {
+    return movies.some(movie => movie.rated === rating)
+  }
+}
 
 /**
  * findById()
@@ -68,7 +80,18 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if (movies.length < 1) {
+    throw 'There are no movies.'
+  } else {
+    const movieFound = movies.find(movie => movie.imdbID === id)
+    if (movieFound === undefined) {
+      return null
+    } else {
+      return movieFound
+    }
+  }
+}
 
 /**
  * filterByGenre()
@@ -92,7 +115,17 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if (movies.length < 1) {
+    throw 'There are no movies.'
+  } else {
+    return movies.filter(movie => {
+      let genreArr = movie.genre.toLowerCase().split(', ')
+      genreLowerCase = genre.toLowerCase()
+      return genreArr.find(gen => gen === genreLowerCase)
+    })
+  }
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +151,18 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (movies.length < 1) {
+    throw 'There are no movies.'
+  } else {
+    let releasedYear = movies.filter(movie => {
+      let releasedArr = movie.released.split(' ')
+      if (Number(releasedArr.length - 1) <= Number(year)) {
+        console.log(releasedArr[2], year)
+      }
+    })
+  }
+}
 
 /**
  * checkMinMetascores()
@@ -126,7 +170,7 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  * Returns either true or false depending whether all movies have a minimum metascore. If the movie array is empty, throw an error with a message.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
  * @param {number} metascore - A minimum metascore number. (e.g. 80)
- * @returns {Boolean|Error} An array of movies where the `released` year is equal to or less than the inputted year.
+ * @returns {Boolean|Error} A boolean that indicates whether all movies have a metascore above the minimum threshhold.
  *
  * NOTE: You must use the .every()` method.
  *
@@ -134,7 +178,13 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  if (movies.length < 1) {
+    throw 'There are no movies.'
+  } else {
+    return movies.every(movie => movie.metascore > metascore)
+  }
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +210,23 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (movies.length < 1) {
+    throw 'There are no movies.'
+  } else {
+    return movies.map(movie => {
+      let rating = movie.ratings.find(rate => {
+        if (rate.source === 'Rotten Tomatoes') {
+          return rate.value
+        }
+      })
+      let movieObj = {
+        [movie.title]: rating.value
+      }
+      return movieObj
+    })
+  }
+}
 
 // Do not change anything below this line.
 module.exports = {
