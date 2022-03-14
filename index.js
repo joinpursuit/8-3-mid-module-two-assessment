@@ -122,7 +122,6 @@ function filterByGenre(movies, genre) {
     throw "Movies array is empty.";
   }
   let genreFormat = genre[0].toUpperCase() + genre.slice(1).toLowerCase();
-  console.log(genreFormat);
   return movies.filter((movie) => {
     return movie.genre.includes(genreFormat);
   });
