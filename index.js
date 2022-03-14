@@ -65,10 +65,11 @@ function checkIfAnyMovieHasRating(movies, rating) {
       return movie;
     } else if (!rating) {
       rating = "G";
-    } else if (movies.length === 0) {
-      throw "Error";
     }
   });
+  if (movies.length === 0) {
+    throw "Error";
+  }
   return checkRating;
 }
 /**
@@ -91,12 +92,13 @@ function findById(movies, id) {
   const found = movies.find((movie) => {
     if (movie.imdbID === id) {
       return movie;
-    } else if (movies.imdbID !== id) {
-      return null
-    } else if (movies.length === 0){
-      throw "error!"
-    }
+     } //else if (movies.imdbID !== id) {
+    //   return null;
+    // }
   });
+  if (movies.length === 0) {
+    throw "error";
+  } 
   return found;
 }
 
@@ -122,7 +124,17 @@ function findById(movies, id) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  const genreFilter = movies.filter((movie) => {
+    if (movie.genre === genre) {
+      return movie;
+    }
+  });
+  if (movies.length === 0){
+    throw "Error"
+  }
+  return genreFilter;
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -164,7 +176,19 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  const found = movies.every((movie) => {
+    if (metascore >= 60 && metascore <= 89) {
+      return movie;
+    } else if (metascore >= 90) {
+      return falseg;
+    }
+  });
+  if (movies.length === 0) {
+    throw "Error";
+  }
+  return found;
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
