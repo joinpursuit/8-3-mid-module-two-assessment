@@ -81,7 +81,13 @@ function checkIfAnyMovieHasRating(movies, rating = 'G') {
     };
  */
 
-function findById() {}
+function findById(movies, id) {
+  if (!movies.length) throw 'Error! No movies can be found.';
+  let foundMovie = movies.find((movie) => {
+    return movie.imdbID === id;
+  });
+  return foundMovie || null;
+}
 
 /**
  * filterByGenre()
