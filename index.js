@@ -75,7 +75,9 @@ function checkIfAnyMovieHasRating(movies, rating = 'G') {
     };
  */
 function findById(movies, id) {
- 
+  if (!movies.length) throw 'Error!! Movies array is empty ,movies not found';
+  let matchingImbdID = movies.find((movie) => movie.imdbID === id);
+  return matchingImbdID || null;
 }
 
 /**
