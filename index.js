@@ -148,13 +148,15 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
+
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   if (!movies.length) {
     throw `There are no movies in ${movies}`;
   }
   const yearChecker = (movie) => {
-    movieYear = movie.released.split(" ")[2];
-    if (year >= movieYear) {
+    let movieDateObj = new Date(movie.released);
+    let movieDateObjYr = movieDateObj.getFullYear();
+    if (year >= movieDateObjYr) {
       return movie;
     }
   };
