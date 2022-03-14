@@ -119,6 +119,10 @@ function filterByGenre(movies, genre) {
   if (!movies.length) {
     throw `There are no movies in ${movies}`;
   }
+  const noCaseGenre = (movie) =>
+    movie.genre.toLowerCase().includes(genre.toLowerCase());
+
+  return movies.filter(noCaseGenre);
 }
 
 /**
