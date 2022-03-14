@@ -85,6 +85,18 @@ const findById = (movies, id) => {
   return movies.find((movie) => movie.imdbID === id) || null;
 };
 
+/*
+another way to address the null edge case return:
+let movieFind = null;
+  movies.find(movie => {
+    if(movie.imdbID === id){
+      movieFind = movie;
+    }
+  });
+
+  return movieFind;
+*/
+
 /**
  * filterByGenre()
  * -----------------------------
