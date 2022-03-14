@@ -125,11 +125,11 @@ return movies.find((movie) => {
  */
 function filterByGenre(movies, genre) {
   if (!movies.length) {
-    throw "Movie cannot be found."
+    throw "Movie cannot be found." //throw error made should there be no movies
   }
   return movies.filter((movie) => {
-    return movie.genre
-  })
+    return movie.genre.toUpperCase().includes(genre.toUpperCase())
+  }) //here the movies array is filered to return a case-senstive way of identifying the movie by its specific genre. 
 }
 
 /**
