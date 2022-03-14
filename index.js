@@ -30,7 +30,19 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  let titledMovies = [] //created a blank array for the returned titles
+  
+  if (!movies.length) {
+    throw "No movie was found." //throw error created should a movie array not be present
+  }
+
+  movies.map(movie => {
+    titledMovies.push(movie.title) //using map, a callback fn is used to push all titled movies into the new array
+  })
+  
+  return titledMovies //returns the pushed array
+}
 
 /**
  * checkIfAnyMovieHasRating()
