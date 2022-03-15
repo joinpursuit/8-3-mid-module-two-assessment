@@ -87,7 +87,7 @@ function findById(movies, id) {
   if (movies.length === 0) 
     throw "error";
     return movies.find((movie) => {
-      return movie.imdbID ===id || null;
+      return movie.imdbID === id || null;
     });
 }
 
@@ -210,12 +210,12 @@ function getRottenTomatoesScoreByMovie(movies) {
   if (movies.length === 0) 
   throw "error";
   let rottenScore = movies.find((movie) => {
-    if(movie.rating === "Rotten Tomatoes") {
-      return movie.rating;
+    if(movie.ratings === "Rotten Tomatoes") {
+      return movie.ratings;
     }
     // I have to access the property `source` in the property `rating` to return the key/value pair.
     return movies.map((movie) => {
-      return {[movie.title]: movie.rating}
+      return {[movie.title]: movie.ratings}
     })
   });
 }
