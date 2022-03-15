@@ -224,21 +224,20 @@ function getRottenTomatoesScoreByMovie(movies) {
     throw "ERROR: Input array cannot be empty";
   } // Validator
 
-  let moviesByRatingArray = movies.map((movie) => {
+  let moviesByRating = movies.map((movie) => {
+    let rottenTomatoesRatingObj = movie.ratings.find(
+      (rating) => rating.source === "Rotten Tomatoes"
+    );
+    // Stores rotten tomatoes for each movie
+
     let movieObject = {};
-    movieObject[movie.title] = "";
+    movieObject[movie.title] = rottenTomatoesRatingObj.value;
+    // Creates movie object with title/rating property for each movie
 
-    let rottenTomatoesRating = movie.ratings.find((rating) => {
-      if (rating.source === "Rotten Tomatoes") {
-        return rating.value;
-      }
-    });
-
-    movieObject[movie.title] = rottenTomatoesRating.value;
     return movieObject;
   });
 
-  return moviesByRatingArray;
+  return moviesByRating;
 }
 
 console.log(getRottenTomatoesScoreByMovie(exampleMovies));
