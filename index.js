@@ -41,9 +41,7 @@ const exampleMovies = require('./movies');
 //Using the arrow function:
 const getAllMovieTitles = (movies) => {
   if (!movies.length) throw 'Error! No movies can be found.';
-  return movies.map((movie) => {
-    return movie.title;
-  });
+  return movies.map((movie) => movie.title);
 };
 
 //console.log(getAllMovieTitles(exampleMovies))
@@ -77,9 +75,7 @@ const getAllMovieTitles = (movies) => {
 //Using the arrow function:
 const checkIfAnyMovieHasRating = (movies, rating = 'G') => {
   if (!movies.length) throw 'Error! No movies can be found.';
-  return movies.some((movie) => {
-    return movie.rated === rating;
-  });
+  return movies.some((movie) => movie.rated === rating);
 };
 
 //console.log(checkIfAnyMovieHasRating(exampleMovies, 'R'));
@@ -154,9 +150,9 @@ const findById = (movies, id) => {
 //Using the arrow function:
 const filterByGenre = (movies, genre) => {
   if (!movies.length) throw 'Error! No movies can be found.';
-  return movies.filter((movie) => {
-    return movie.genre.toLowerCase().includes(genre.toLowerCase());
-  });
+  return movies.filter((movie) =>
+    movie.genre.toLowerCase().includes(genre.toLowerCase())
+  );
 };
 
 //console.log(filterByGenre(exampleMovies, 'Horror'));
@@ -195,9 +191,8 @@ const filterByGenre = (movies, genre) => {
 
 //Using the arrow function:
 const getAllMoviesReleasedAtOrBeforeYear = (movies, year) => {
-  return movies.filter((movie) => {
-    return movie.released.slice(-4) <= year;
-  });
+  if (!movies.length) throw 'Error! No movies can be found.';
+  return movies.filter((movie) => movie.released.slice(-4) <= year);
 };
 
 //console.log(getAllMoviesReleasedAtOrBeforeYear(exampleMovies, 2000));
@@ -226,9 +221,8 @@ const getAllMoviesReleasedAtOrBeforeYear = (movies, year) => {
 
 //Using the arrow function:
 const checkMinMetascores = (movies, metascore) => {
-  return movies.every((movie) => {
-    return movie.metascore >= metascore ? true : false;
-  });
+  if (!movies.length) throw 'Error! No movies can be found.';
+  return movies.every((movie) => (movie.metascore >= metascore ? true : false));
 };
 
 //console.log(checkMinMetascores(exampleMovies, 60));
