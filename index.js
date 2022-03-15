@@ -36,8 +36,8 @@ let allMovieTitles = []
   if (movies.length === 0) {
     throw 'There are no movies'
   }
-   movies.map(movie => {allMovieTitles.push(movie.title)})
-    return allMovieTitles
+    movies.map(movie => {allMovieTitles.push(movie.title)})
+  return allMovieTitles
 }
 
 /**
@@ -63,8 +63,8 @@ const checkIfAnyMovieHasRating = (movies, rating = 'G') => {
     throw 'There are no movies'
   }
  
-    return movies.some(movie => 
-       movie.rated === rating) 
+  return movies.some(movie => 
+    movie.rated === rating) 
     
 }
 
@@ -127,7 +127,7 @@ const filterByGenre = (movies, genre) => {
 
   return movies.filter((movie) => {
     const caseSensetiveMovie = movie.genre.toUpperCase()
-    return caseSensetiveMovie.includes(genre.toUpperCase())
+  return caseSensetiveMovie.includes(genre.toUpperCase())
   }) || []
 
 }
@@ -219,7 +219,19 @@ const checkMinMetascores = (movies, metascore = 60) => {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+const getRottenTomatoesScoreByMovie = (movies) => {
+  
+  if (movies.length === 0) {
+    throw 'There are no movies'
+  }  
+
+  return movies.map((movie) => { 
+  let rTRating = movie.ratings.find (
+    (rating) => rating.source === 'Rotten Tomatoes')
+
+    return {[movie.title] : rTRating.value}
+  })
+}
 
 // Do not change anything below this line.
 module.exports = {
