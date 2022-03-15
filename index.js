@@ -206,14 +206,14 @@ function checkMinMetascores(movies, metascore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-//TODO: get rottontomatoesScore
+
 function getRottenTomatoesScoreByMovie(movies) {
   let rtScoreNTitle = {};
   let scoreByMovie = movies.find((movie) => movie.ratings);
   let movieName = movies.map((movie) => movie.title);
   rtScoreNTitle.push({ [movieName]: scoreByMovie });
   if (!movies.length) {
-    throw `There are No Movies`;
+    throw `There are No Movies and I am lost`;
   }
   return rtScoreNTitle;
 }
