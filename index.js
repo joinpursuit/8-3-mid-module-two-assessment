@@ -36,7 +36,7 @@ function getAllMovieTitles(movies) {
     movieTitles.push(movie.title);
   });
   if (!movies.length) {
-    throw `No movie with this title exist`;
+    throw `No MOVIE with this title exist but maybe you can make it! :)`;
   }
   return movieTitles;
 }
@@ -57,14 +57,16 @@ function getAllMovieTitles(movies) {
  * EXAMPLE:
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
- */ 
+ */
 function checkIfAnyMovieHasRating(movies, rating) {
-  let hasRating = rating ? rating: 'G'
   if (!movies.length) {
-    throw `This MOVIE does not exist`;
+    throw `Opps...Seems like You are reading tonight!`;
   }
-  
-  return movies.some((movie) => {return movie.rated === hasRating})
+  let hasRating = rating ? rating : 'G';
+  const ratedMovie = movies.some((movie) => {
+    return movie.rated === hasRating;
+  });
+  return ratedMovie;
 }
 
 /**
@@ -86,7 +88,7 @@ function checkIfAnyMovieHasRating(movies, rating) {
 function findById(movies, id) {
   let findId = movies.find((movie) => movie.imdbID === id);
   if (!movies.length) {
-    throw `Could not find MOVIE with id: ${id}`;
+    throw `Could not find MOVIE with id: ${id} Better Luck Next Time`;
   }
   return findId || null;
 }
@@ -119,7 +121,7 @@ function filterByGenre(movies, genre) {
     movie.genre.toLowerCase().includes(genre.toLowerCase()),
   );
   if (!movies.length) {
-    throw `There are No Movies`;
+    throw `Aww, Snap No Movie for you here!`;
   }
   return result;
 }
@@ -153,7 +155,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
     (movie) => movie.released.slice(-4) <= year,
   );
   if (!movies.length) {
-    throw `That MOVIE only Exist in the ether`;
+    throw `That MOVIE only Exist in the Error Place`;
   }
   return moviesReleased;
 }
@@ -206,16 +208,16 @@ function checkMinMetascores(movies, metascore) {
  */
 //TODO: get rottontomatoesScore
 function getRottenTomatoesScoreByMovie(movies) {
-let rtScoreNTitle = {}
-  let scoreByMovie = movies.find((movie) => movie.ratings[2]);
-  let moviename = movies.map(movie => (movie.title))
-rtScoreNTitle.push({[moviename]:scoreByMovie})
+  let rtScoreNTitle = {};
+  let scoreByMovie = movies.find((movie) => movie.ratings);
+  let movieName = movies.map((movie) => movie.title);
+  rtScoreNTitle.push({ [movieName]: scoreByMovie });
   if (!movies.length) {
     throw `There are No Movies`;
   }
   return rtScoreNTitle;
 }
-
+//Honestly I would like if we went over this one in class thank you!
 // Do not change anything below this line.
 module.exports = {
   getAllMovieTitles,
