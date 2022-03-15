@@ -129,7 +129,7 @@ function filterByGenre(movies, genre) {
   }
   return movies.filter((movie) => {
     return movie.genre.toUpperCase().includes(genre.toUpperCase())
-  }) //here the movies array is filered to return a case-senstive way of identifying the movie by its specific genre. 
+  }) //here the movies array is filered to return a case-senstive way of identifying the movie by its specific genre. Being that genre is a string, multiple string methods are employed in order to ensure punctuation carries over from the given variable.
 }
 
 /**
@@ -174,7 +174,8 @@ return movies.filter((movie) => {
  * Returns either true or false depending whether all movies have a minimum metascore. If the movie array is empty, throw an error with a message.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
  * @param {number} metascore - A minimum metascore number. (e.g. 80)
- * @returns {Boolean|Error} An array of movies where the `released` year is equal to or less than the inputted year.
+ * @returns {Boolean|Error} A boolean that indicates whether all movies have a metascore above the minimum threshhold
+
  *
  * NOTE: You must use the .every()` method.
  *
@@ -182,7 +183,15 @@ return movies.filter((movie) => {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  if (!movies.length) {
+    throw "Movie cannot be found." //Created throw error. The throw error is present before the mapped code in order to catch errors in the block before it gets to the important function. If the movies array contains no entry, the error is activated.
+  }
+
+  return movies.every((movie) => {
+    return movie.metascore > metascore ? true : false
+  }) //.every is used here to return any movie with a metascore with an equivalence to the given metascore value to be logged. Should the juxtaposed movie contain a metascore within the given range, it will log true. Otherwise, it will log false.
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
