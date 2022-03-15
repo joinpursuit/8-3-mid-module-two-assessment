@@ -91,9 +91,8 @@ function findById(movies, id) {
   }
   
   return movies.find((movie) => {
-    return movie.imdbID === `${id}`
-         
-  })
+    return movie.imdbID === id 
+  }) || null
 }
 
 
@@ -120,7 +119,16 @@ function findById(movies, id) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+
+  if (movies.length === 0 ) {
+    throw 'There are no movies'
+  }
+  return movies.filter((movie) => {
+    return movie.genre.toUpperCase().includes(genre.toUpperCase())
+  }) 
+
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
