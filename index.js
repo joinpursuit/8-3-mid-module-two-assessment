@@ -84,13 +84,9 @@ function checkIfAnyMovieHasRating(movies, rating = 'G') {
  */
 function findById(movies, id) {
 	if (!movies.length) {
-		throw 'There is no a movie with the selected ID';
+		throw 'There is no movie with the selected ID';
 	}
-	let foundID = movies.find((movie) => movie.imdbID.includes(id));
-	if (!foundID) {
-		return null;
-	}
-	return foundID;
+	return movies.find((movie) => movie.imdbID.includes(id)) || null;
 }
 
 /**
@@ -116,7 +112,6 @@ function findById(movies, id) {
  *  //> []
  */
 function filterByGenre(movies, genre) {
-	let genreMatch = [];
 	if (!movies.length) {
 		throw 'Sorry, no movies match the selected genre';
 	}
@@ -151,11 +146,11 @@ function filterByGenre(movies, genre) {
  */
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
 	if (!movies.length) {
-		throw 'No moves were released during this year';
+		throw 'No movies were released during this year';
 	}
 	return movies.filter((movie) => movie.released.split(' ')[2] <= year);
 }
-
+// when you run the test the metascore test appears before this one and took me a few mins to realize I was reading the wrong test
 /**
  * checkMinMetascores()
  * -----------------------------
