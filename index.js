@@ -35,8 +35,8 @@ function getAllMovieTitles(movies) {
   if (!movies.length) {
     throw 'Sorry, no movies available.';
   }
-  const movieTitles = (movie) => movie.title;
-  return movies.map(movieTitles);
+  const getmovieTitles = (movie) => movie.title;
+  return movies.map(getmovieTitles);
 }
 
 /**
@@ -85,8 +85,8 @@ function findById(movies, id) {
   if (!movies.length) {
     throw 'Sorry, no movies available.';
   }
-  const idMatched = (movie) => movie.imdbID === id;
-  return movies.find(idMatched) ? movies.find(idMatched) : null;
+  const getidMatched = (movie) => movie.imdbID === id;
+  return movies.find(getidMatched) ? movies.find(getidMatched) : null;
 }
 
 /**
@@ -117,7 +117,7 @@ function filterByGenre(movies, genre) {
     throw 'Sorry, no movies available.';
   }
   const getfilterGenre = movies.filter((movie) => {
-    if (movie. genre. toLowerCase().split(', ').includes (genre. toLowerCase())) {
+    if (movie.genre.toLowerCase().split(', ').includes(genre.toLowerCase())) {
       return movie;
     }
   });
@@ -148,7 +148,15 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear(movies, year) {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (!movies.length) {
+    throw 'Sorry, no movies available.';
+  }
+  const getreleasedAtOrBeforeYear = movies.filter((movie) => {
+    return parseInt(movie.released .split(' ')[2]) <= year;
+  });
+  return getreleasedAtOrBeforeYear;
+}
 
 /**
  * checkMinMetascores()
