@@ -201,20 +201,18 @@ const checkMinMetascores = (movies, metascore) => {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie(movies) {
-  // ✕ should use the `.map()` method (1 ms)
-  // ✓ should use the `.find()` method
-  // ✓ should throw an error if there are no movies (1 ms)
-  // ✕ should an array of objects, where the key is the movie title and the value is the Rotten Tomatoes score (1 ms)
-  // ✕ should dynamically change depending on the movies inputted
- // movies[0].ratings[1].value
-
+const getRottenTomatoesScoreByMovie = (movies) => {
   if (!movies.length) {
-      throw "No Movies"
+  throw "No Movies"
   }
-  
-  // let findRating = movies.find()
-  // return findRating
+  let moviesRatings = movies.map(movie => {
+    let object = {}
+    let title = movie.title
+    let rating = movie.ratings.find(rating => rating.source === "Rotten Tomatoes").value
+     object[title] = rating
+     return object
+  })
+  return moviesRatings
 }
 console.log(getRottenTomatoesScoreByMovie(movies))
 // Do not change anything below this line.
