@@ -36,7 +36,7 @@ function getAllMovieTitles(movies) {
     movieTitles.push(movie.title);
   });
   if (!movies.length) {
-    throw `No MOVIE with this title exist but maybe you can make it! :)`;
+    throw `No MOVIE with this title exist but maybe you can make it if you believe! :)`;
   }
   return movieTitles;
 }
@@ -88,7 +88,7 @@ function checkIfAnyMovieHasRating(movies, rating) {
 function findById(movies, id) {
   let findId = movies.find((movie) => movie.imdbID === id);
   if (!movies.length) {
-    throw `Could not find MOVIE with id: ${id} Better Luck Next Time`;
+    throw `Could not find MOVIE with id: ${id} Better Luck Next Time said ...ERROR`;
   }
   return findId || null;
 }
@@ -217,7 +217,8 @@ function getRottenTomatoesScoreByMovie(movies) {
   }
   return rtScoreNTitle;
 }
-//Honestly I would like if we went over this one in class thank you!
+//Honestly... I would like if we went over this one in class thank you so much!
+
 // Do not change anything below this line.
 module.exports = {
   getAllMovieTitles,
