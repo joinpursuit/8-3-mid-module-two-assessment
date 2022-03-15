@@ -78,8 +78,13 @@ return movies.some((movie) => movie.rated === rating)
       // Toy Story 4
     };
  */
-function findById() {}
-
+function findById(movies,id) {
+  if(!movies.length){
+  throw `MovieArrayIsEmpty`;
+}
+return movies.find((movie) => movie.imdbID === id || null);
+}
+// need to return 'null' *come back to this to this*
 /**
  * filterByGenre()
  * -----------------------------
