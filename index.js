@@ -32,7 +32,7 @@ const exampleMovies = require("./movies");
  */
 function getAllMovieTitles(movies) {
   if(movies.length !== 0){
-    return movieTitles = movies.map((movie) => movie.title);  
+    return movies.map((movie) => movie.title);  
   }else{
     throw 'Error: the Movie list is empty';
   }
@@ -59,7 +59,7 @@ function getAllMovieTitles(movies) {
  */
 function checkIfAnyMovieHasRating(movies, rating='G') {
   if(movies.length !== 0){
-    return movieHasRating = movies.some((movie) => movie.rated === rating)
+    return movies.some((movie) => movie.rated === rating)
   }else{
     throw 'Error: the Movie list is empty';
   }
@@ -177,7 +177,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  * Returns either true or false depending whether all movies have a minimum metascore. If the movie array is empty, throw an error with a message.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
  * @param {number} metascore - A minimum metascore number. (e.g. 80)
- * @returns {Boolean|Error} An array of movies where the `released` year is equal to or less than the inputted year.
+ * @returns {Boolean|Error} .
  *
  * NOTE: You must use the .every()` method.
  *
@@ -218,8 +218,18 @@ function checkMinMetascores(movies, metascore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie(movies) {
-
+function getRottenTomatoesScoreByMovie(movies, sourceValue='Rotten Tomatoes') {
+  let key = 'source',
+      movieScores = [];
+  if(movies.length !== 0){
+    movieScores = movies.map(function(movie){ 
+      // Getting the values according to search condition || Assigning properties to object
+      return {[movie.title] : (movie.ratings).find(e => (e[key] === sourceValue)).value}; 
+    })
+  }else{
+    throw 'Error: the Movie list is empty';
+  }
+  return movieScores;
 }
 
 // Do not change anything below this line.
