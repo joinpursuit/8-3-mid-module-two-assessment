@@ -122,7 +122,16 @@ return result || null
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+
+  if (!movies.length) {
+    throw "error";
+  }
+  return movies.filter((movie) => movie.genre.toLowerCase().includes(genre.toLowerCase()))
+    
+  };
+  
+  //  return sameGenreMovies
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
