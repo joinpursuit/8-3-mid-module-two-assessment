@@ -69,7 +69,6 @@ function checkIfAnyMovieHasRating(movies, rating) {
   }
 
   let movieRating = movies.some((movie) => movie.rated === rating);
-
   if (!rating || !movies.rated) {
     /*I wasn't exactly sure how to interperet "if no rating is passed", 
     I assumed either the user inputted rating could be blank or the movies.rated field could be an empty string.
@@ -177,8 +176,9 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
     let releaseDateFormatter = movies[i].released.split(' ');
     let releaseDate = parseFloat(releaseDateFormatter[2]);
     /*Had to use two variables to perform the date conversion to seperate out the year of release so I could compare the two years,
-     I tried implementing these operations within the filter() method but had no luck in getting it to work.
-      I think the problem with my code is how to set up the variable for the formatted movies.released as one of the filter arguements
+     I tried implementing these operations within the filter() method but had no luck in getting it to work. So I had to use a 
+     standard for loop to iterate movies before I could format movies.realeased for comparisons.
+     I think the problem with my code is how to set up the variable for the formatted movies.released as one of the filter arguements
      to compare to the user inputted year on the line below.*/
     releaseFilter = movies.filter(() => releaseDate <= year, {});
     return releaseFilter;
