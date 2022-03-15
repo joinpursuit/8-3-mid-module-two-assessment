@@ -164,7 +164,15 @@ return movies.filter((movie) => {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies,metascore) {
+  if (movies.length !==0 ) {
+    return movies.every((movie) => movie.metascore >= metascore) 
+  } else {
+        throw `NoMoviesFound`
+      }
+    }
+  
+
 
 /**
  * getRottenTomatoesScoreByMovie()
