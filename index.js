@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -198,8 +199,16 @@ function checkMinMetascores(movies,metascore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
-
+function getRottenTomatoesScoreByMovie(movies) {
+  if (!movies.length)
+  throw  `NoMoviesFound`
+  return movies.map((movie) => {
+  let rottenTomatoRating = movie.ratings.find((rating) => {
+      return rating.source === "Rotten Tomatoes"
+})
+return { [movie.title]: rottenTomatoRating.value }
+})
+}
 // Do not change anything below this line.
 module.exports = {
   getAllMovieTitles,
