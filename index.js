@@ -35,8 +35,8 @@ function getAllMovieTitles(movies) {
   if (!movies.length) {
     throw 'Sorry, no movies available.';
   }
-  const getmovieTitles = (movie) => movie.title;
-  return movies.map(getmovieTitles);
+  const getMovieTitles = (movie) => movie.title;
+  return movies.map(getMovieTitles);
 }
 
 /**
@@ -85,8 +85,8 @@ function findById(movies, id) {
   if (!movies.length) {
     throw 'Sorry, no movies available.';
   }
-  const getidMatched = (movie) => movie.imdbID === id;
-  return movies.find(getidMatched) ? movies.find(getidMatched) : null;
+  const getIdMatched = (movie) => movie.imdbID === id;
+  return movies.find(getIdMatched) ? movies.find(getIdMatched) : null;
 }
 
 /**
@@ -116,12 +116,12 @@ function filterByGenre(movies, genre) {
   if (!movies.length) {
     throw 'Sorry, no movies available.';
   }
-  const getfilterGenre = movies.filter((movie) => {
+  const getFilterGenre = movies.filter((movie) => {
     if (movie.genre.toLowerCase().split(', ').includes(genre.toLowerCase())) {
       return movie;
     }
   });
-  return getfilterGenre;
+  return getFilterGenre;
 }
 
 /**
@@ -152,10 +152,10 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   if (!movies.length) {
     throw 'Sorry, no movies available.';
   }
-  const getreleasedAtOrBeforeYear = movies.filter((movie) => {
+  const getReleasedAtOrBeforeYear = movies.filter((movie) => {
     return parseInt(movie.released.split(' ')[2]) <= year;
   });
-  return getreleasedAtOrBeforeYear;
+  return getReleasedAtOrBeforeYear;
 }
 
 /**
@@ -176,7 +176,7 @@ function checkMinMetascores(movies, metascore) {
   if (!movies.length) {
     throw 'Sorry, no movies available.';
   }
-  return movies.every( (movie) => parseInt( movie.metascore) >= metascore);
+  return movies.every((movie) => parseInt(movie.metascore) >= metascore);
 }
 
 /**
@@ -203,7 +203,23 @@ function checkMinMetascores(movies, metascore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie(movies) {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (!movies.length) {
+    throw 'Sorry, no movies available.';
+  }
+  // Couldn't figure out how to use .find() on [{ratings}]
+  // I know my issue is refferencing the correct ratings {}
+  const getCorrectRating = movies.find((movie) => {
+    if (movie.ratings.source === 'Rotten Tomatoes') {
+      return movie.ratings.value;
+    }
+  });
+  const getMovieAndRottenTomatoesScore = (movie) => ({
+    [movie.title]: getCorrectRating,
+  });
+
+  return movies.map (getMovieAndRottenTomatoesScore);
+}
 
 // Do not change anything below this line.
 module.exports = {
