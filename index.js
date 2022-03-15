@@ -80,11 +80,12 @@ return movies.some((movie) => movie.rated === rating)
     };
  */
 function findById(movies,id) {
-  if(!movies.length){
-  throw `MovieArrayIsEmpty`;
+if (!movies.length){
+throw `NoMoviesFoundWithID`
 }
-return movies.find((movie) => movie.imdbID === id || null);
+return movies.find((movie) => movie.imdbID.includes(id)) || null 
 }
+
 // need to return 'null' *come back to this to this*
 /**
  * filterByGenre()
@@ -107,8 +108,8 @@ return movies.find((movie) => movie.imdbID === id || null);
  * EXAMPLE:
  *  filterByGenre(movies, "Horror")
  *  //> []
- */
-function filterByGenre(movies,genre) {
+ */ 
+  function filterByGenre(movies,genre) {
   let list = movies.filter(movie => movie.genre.toLowerCase().includes(genre.toLowerCase()))
   if (movies.length === 0){
   throw `NoMoviesFound`
