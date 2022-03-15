@@ -58,7 +58,7 @@ function getAllMovieTitles(movies) {
  */
 function checkIfAnyMovieHasRating(movies,rating = "G") {
      if (!movies.length){
-     throw `There are no movies availble with the given rating,we apologize for any inconvenience.`;
+     throw `There are no movies available with the given rating,we apologize for any inconvenience.`;
 }
      return movies.some((movie) => movie.rated === rating)
 }
