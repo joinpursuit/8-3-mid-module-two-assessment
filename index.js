@@ -35,9 +35,9 @@ function getAllMovieTitles(movies) {
     throw "ERROR: Input array cannot be empty";
   } // Validator
 
-  return movies.map((movie) => {
-    return movie.title;
-  }); // Creates new array with movie titles as elements
+  let movieTitles = movies.map((movie) => movie.title);
+
+  return movieTitles;
 }
 
 /**
