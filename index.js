@@ -208,16 +208,17 @@ function checkMinMetascores(movies, metascore) {
  */
 
 function getRottenTomatoesScoreByMovie(movies) {
-  let rtScoreNTitle = {};
-  let scoreByMovie = movies.find((movie) => movie.ratings);
-  let movieName = movies.map((movie) => movie.title);
-  rtScoreNTitle.push({ [movieName]: scoreByMovie });
-  if (!movies.length) {
-    throw `There are No Movies and I am lost`;
-  }
-  return rtScoreNTitle;
+  if (!movies.length) throw `NO MOVIE HERE HUMAN.`;
+  return movies.map((movie) => {
+    let rTomatoRating = movie.ratings.find((rating) => {
+      return rating.source === 'Rotten Tomatoes';
+    });
+    return { [movie.title]: rTomatoRating.value };
+  });
 }
+
 //Honestly... I would like if we went over this one in class thank you so much!
+//*** I know its late and it won't get graded.. I wanted to just have the correct answer for myself */
 
 // Do not change anything below this line.
 module.exports = {
