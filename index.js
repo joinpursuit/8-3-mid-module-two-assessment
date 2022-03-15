@@ -115,7 +115,7 @@ function findById(movies, id) {
  */
 function filterByGenre(movies, genre) {
   if (movies.length === 0) {
-    throw "The movies array is empty";
+    throw "The movies' array is empty";
   }
 
   return movies.filter((movie) =>
@@ -177,7 +177,18 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  if (!movies.length) {
+    throw `Array hasn't eaten`;
+  }
+  const isAboveMinMetaScr = movies.every((movie) => {
+    if (movie.metascore > metascore) {
+      return true;
+    }
+    return false;
+  });
+  return isAboveMinMetaScr;
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -203,7 +214,22 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (movies.length === 0) {
+    throw "There are no movies.";
+  }
+  const result = movies.find((movie) => movie.ratings[movie.ratings[2]]);
+
+  const movieFound = movies.map((movie) => {
+    let obj = {};
+    let movieSource = movie.ratings[1].source;
+    if (movie.ratings.includes(movieSource)) {
+      obj[movie.title] = movie.ratings[1].value;
+      return obj;
+    }
+  });
+  return movieFound;
+}
 
 // Do not change anything below this line.
 module.exports = {
