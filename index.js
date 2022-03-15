@@ -153,7 +153,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
     throw 'Sorry, no movies available.';
   }
   const getreleasedAtOrBeforeYear = movies.filter((movie) => {
-    return parseInt(movie.released .split(' ')[2]) <= year;
+    return parseInt(movie.released.split(' ')[2]) <= year;
   });
   return getreleasedAtOrBeforeYear;
 }
@@ -172,7 +172,12 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores(movies, metascore) {}
+function checkMinMetascores(movies, metascore) {
+  if (!movies.length) {
+    throw 'Sorry, no movies available.';
+  }
+  return movies.every( (movie) => parseInt( movie.metascore) >= metascore);
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
