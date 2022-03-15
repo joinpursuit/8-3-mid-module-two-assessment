@@ -35,11 +35,11 @@ function getAllMovieTitles(movies) {
   let titledMovies = [] //created a blank array for the returned titles
   
   if (!movies.length) {
-    throw "No movie was found." //throw error created should a movie array not be present
+    throw "No movie was found." //throw error created should a movie array not be present. The throw error is present before the mapped code in order to catch errors in the block before it gets to the important function. If the movies array contains no entry, the error is activated.
   }
 
   movies.map(movie => {
-    titledMovies.push(movie.title) //using map, a callback fn is used to push all titled movies into the new array
+    titledMovies.push(movie.title) //using map, a callback fn is used to push all titled movies into the new array.
   })
   
   return titledMovies //returns the pushed array
@@ -65,10 +65,10 @@ function getAllMovieTitles(movies) {
  */
 function checkIfAnyMovieHasRating(movies, rating) {
   if (!movies.length) {
-  throw "No movie was found." //a throw for if there is no movie listed at all
+  throw "No movie was found." //a throw for if there is no movie listed at all. The throw error is present before the mapped code in order to catch errors in the block before it gets to the important function. If the movies array contains no entry, the error is activated.
 }
 
-let ratingToUse = rating ? rating : "G" // checking if rating exists and if it doesnt G is passed
+let ratingToUse = rating ? rating : "G" // I need to check if the rating parameter exists. If it exists, then it is compared to see if it is equivalent to the default rating given.
 
   return movies.some((movie) => {return movie.rated === ratingToUse})
 //some method which tells you true if any of the movies listed has a G rating. 
@@ -93,12 +93,12 @@ let ratingToUse = rating ? rating : "G" // checking if rating exists and if it d
  */
 function findById(movies, id) {
 if (!movies.length) {
-    throw "Movie could not be found." //throw error created should there be no movies
+    throw "Movie could not be found." //throw error created should there be no movies. The throw error is present before the mapped code in order to catch errors in the block before it gets to the important function. If the movies array contains no entry, the error is activated.
 }
   
 return movies.find((movie) => {
     return movie.imdbID === id
-      }) || null //if the given movie via its ID cannot be found, return null
+      }) || null //if the given movie via its ID cannot be found, return null.
 }
 
 /**
@@ -125,7 +125,7 @@ return movies.find((movie) => {
  */
 function filterByGenre(movies, genre) {
   if (!movies.length) {
-    throw "Movie cannot be found." //throw error made should there be no movies
+    throw "Movie cannot be found." //throw error made should there be no movies. The throw error is present before the mapped code in order to catch errors in the block before it gets to the important function. If the movies array contains no entry, the error is activated.
   }
   return movies.filter((movie) => {
     return movie.genre.toUpperCase().includes(genre.toUpperCase())
@@ -158,14 +158,14 @@ function filterByGenre(movies, genre) {
  */
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   if (!movies.length) {
-    throw "Movie could not be found." //created throw error
+    throw "Movie could not be found." //created throw error. The throw error is present before the mapped code in order to catch errors in the block before it gets to the important function. If the movies array contains no entry, the error is activated.
   }
 
 
 return movies.filter((movie) => {
  const splitYear = movie.released.split(" ")
   return parseInt(splitYear[2]) <= year
-}) // a new variable was created in order to house just the year from the released string. I then return a coversion of that string into a number and  ompare it to see if its less than or equal to the given value
+}) // a new variable was created in order to house just the year from the movie.released string. I then return a coversion of that string into a number and  compare it to see if its less than or equal to the given year value
 }
 
 /**
