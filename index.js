@@ -70,7 +70,14 @@ function checkIfAnyMovieHasRating(movies, rated) {
 
   let movieRating = movies.some((movie) => movie.rated === rated);
 
-  {
+  if (!rated || !movies.rated) {
+    /*I wasn't exactly sure how to interperet "if no rating is passed", 
+    I assumed either the user inputted rating could be blank or the movies.rated field could be an empty string.
+    Either way my code for those assumptions didn't pass the test or my code was just implemented incorrectly.
+    So I had a little bit of difficulty with passing this test.
+    */
+    movies.some((movie) => (movie.rated = 'G'));
+    return movieRating;
   }
   return movieRating;
 }
@@ -129,7 +136,6 @@ function filterByGenre(movies, genre) {
   if (Object.keys(movies).length === 0) {
     throw 'Invalid data, please provide a movie.';
   }
-  genreArr = [];
 
   for (let i = 0; i < movies.length; i++) {
     movies[i].genre.split(' ');
@@ -171,11 +177,16 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   if (Object.keys(movies).length === 0) {
     throw 'Invalid data, please provide a movie.';
   }
-  let getAllMoviesAtOrBeforeYear = movies.filter(
-    (movie) => Number(movie.released.split(' ')) <= year,
-    {},
-  );
-  return getAllMoviesAtOrBeforeYear;
+  for (let i = 0; i < movies.length; i++) {
+    let releaseDateFormatter = movies[i].released.split(' ');
+    let releaseDate = parseFloat(releaseDateFormatter[2]);
+    /*Had to use two variables to perform the date convertison to seperate out the movie release year so I could compare the two years,
+     I tried implementing these operations within the filter() method but had no luck in getting it to work.
+      I think the problem with my code is how to set up the variable for the formatted movies.released as one of the filter arguements
+     to compare to the user inputted year on the line below.*/
+    releaseFilter = movies.filter(() => releaseDate <= year, {});
+    return releaseFilter;
+  }
 }
 
 /**
@@ -229,15 +240,22 @@ function checkMinMetascores(movies, metascore) {
     ];
  */
 function getRottenTomatoesScoreByMovie(movies) {
+  /*My best attempt at chaining the .find() and .map() methods to return an array of titles and scores,
+   Pretty sure my code is off and I didn't even need to use the standard for loop to iterate the array.
+   But I felt this was the best approach I could come up with to access the nested array of ratings with in movies,
+   especially when I needed to make a comparison for .find() to check if the source was from "Rotten Tomatoes."*/
   if (Object.keys(movies).length === 0) {
     throw 'Invalid data, please provide a movie.';
   }
-  let getMovieRTS /*Rotten Tomatoes Score*/ = movies.map((movie) => {
-    if (movie.ratings.source === 'Rotten Tomatoes') {
-      return { [movie.title]: movie.ratings.value };
-    }
-  });
-  return getMovieRTS;
+  for (let i = 0; i < movies.length; i++) {
+    let found = movies.find(
+      (movie) => movie.ratings[i].source === 'Rotten Tomatoes',
+      {},
+    );
+    /*Rotten Tomatoes Score*/ found.map((movie) => {
+      return { [movie.title]: movie.ratings[i].value };
+    });
+  }
 }
 
 // Do not change anything below this line.
