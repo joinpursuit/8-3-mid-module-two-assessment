@@ -188,9 +188,11 @@ function checkMinMetascores(movies, metascore) {
     throw "ERROR: Input array cannot be empty";
   } // Validator
 
-  return movies.every((movie) => {
-    return movie.metascore >= metascore;
-  }); // Checks if every movie has a metascore greater than or equal to the inputted score
+  const allMoviesHaveMinMetascore = movies.every(
+    (movie) => movie.metascore >= metascore
+  );
+
+  return allMoviesHaveMinMetascore;
 }
 
 /**
