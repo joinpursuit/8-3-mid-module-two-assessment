@@ -63,9 +63,9 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
     throw "ERROR: Input array cannot be empty";
   } // Validator
 
-  return movies.some((movie) => {
-    return movie.rated === rating;
-  }); // Checks for at least one movie title with inputted rating
+  let movieWithRatingExists = movies.some((movie) => movie.rated === rating);
+
+  return movieWithRatingExists;
 }
 
 /**
