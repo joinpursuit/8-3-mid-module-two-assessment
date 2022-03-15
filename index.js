@@ -37,7 +37,7 @@ let allMovieTitles = []
     throw 'There are no movies'
   }
    movies.map(movie => {allMovieTitles.push(movie.title)})
-   return allMovieTitles
+    return allMovieTitles
 }
 
 /**
@@ -58,7 +58,16 @@ let allMovieTitles = []
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = 'G') {
+  if (movies.length === 0) {
+    throw 'There are no movies'
+  }
+ 
+    return movies.some(movie => 
+       movie.rated === rating) 
+    
+}
+
 
 /**
  * findById()
@@ -77,6 +86,8 @@ function checkIfAnyMovieHasRating() {}
     };
  */
 function findById() {}
+
+
 
 /**
  * filterByGenre()
