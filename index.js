@@ -212,14 +212,17 @@ function getRottenTomatoesScoreByMovie(movies) {
   if (!movies.length) {
     throw "Error: No movies";
   }
-  let score = movies.find((rate) => rate.ratings.value);
+
   let arr = movies.map((movie) => {
     let obj = {};
-    obj[movie.title] = score;
+    obj[movie.title] = movie.ratings.find(
+      (movie.source = "Rotten Tomatoes")
+    ).value;
     return obj;
   });
   return arr;
 }
+//must get the value: Rotten tomatoes score
 
 // Do not change anything below this line.
 module.exports = {
