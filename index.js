@@ -124,6 +124,7 @@ function filterByGenre(movies, genre) {
   if (movies.length === 0 ) {
     throw 'There are no movies'
   }
+
   return movies.filter((movie) => {
     return movie.genre.toUpperCase().includes(genre.toUpperCase())
   }) 
@@ -154,7 +155,18 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+
+if (movies.length === 0 ) {
+    throw 'There are no movies'
+  }
+
+  return movies.filter((movie) => {
+    const onlyYear = movie.released.split(' ')
+    return onlyYear[2] <= year
+  })
+
+}
 
 /**
  * checkMinMetascores()
