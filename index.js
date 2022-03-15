@@ -145,10 +145,6 @@ function filterByGenre(movies, genre) {
   }
 }
 
-/*return movies.filter((movie) => {
-    return movie.genre.split(' ').toLowerCase() === genre.toLowerCase();
-  }); */
-
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
  * -----------------------------
@@ -180,7 +176,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   for (let i = 0; i < movies.length; i++) {
     let releaseDateFormatter = movies[i].released.split(' ');
     let releaseDate = parseFloat(releaseDateFormatter[2]);
-    /*Had to use two variables to perform the date convertison to seperate out the movie release year so I could compare the two years,
+    /*Had to use two variables to perform the date conversion to seperate out the year of release so I could compare the two years,
      I tried implementing these operations within the filter() method but had no luck in getting it to work.
       I think the problem with my code is how to set up the variable for the formatted movies.released as one of the filter arguements
      to compare to the user inputted year on the line below.*/
@@ -252,8 +248,8 @@ function getRottenTomatoesScoreByMovie(movies) {
       (movie) => movie.ratings[i].source === 'Rotten Tomatoes',
       {},
     );
-    /*Rotten Tomatoes Score*/ found.map((movie) => {
-      return { [movie.title]: movie.ratings[i].value };
+    /*Rotten Tomatoes Score*/ found.map(() => {
+      return { [found.title]: found.ratings[i].value };
     });
   }
 }
