@@ -123,9 +123,11 @@ function filterByGenre(movies, genre) {
     throw "ERROR: Input array cannot be empty";
   } // Validator
 
-  return movies.filter((movie) => {
-    return movie.genre.toLowerCase().includes(genre.toLocaleLowerCase());
-  }); // Filters movies array for only those including the inputted genre
+  let filteredMoviesByGenre = movies.filter((movie) =>
+    movie.genre.toLowerCase().includes(genre.toLowerCase())
+  );
+
+  return filteredMoviesByGenre;
 }
 
 /**
