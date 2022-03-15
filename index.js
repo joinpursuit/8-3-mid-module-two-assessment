@@ -159,11 +159,14 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
     throw "ERROR: Input array cannot be empty";
   } // Validator
 
-  return movies.filter((movie) => {
+  let moviesReleasedAtOrBeforeYear = movies.filter((movie) => {
     const movieReleaseYear = new Date(movie.released).toString().split(" ")[3];
-    // creates a Date Object for the movie release date and modifies it to be comparable with the inputted year
+    // Creates a Date Object for the movie release date and modifies it to be comparable with the inputted year parameter
+
     return movieReleaseYear <= year;
   });
+
+  return moviesReleasedAtOrBeforeYear;
 }
 
 /**
