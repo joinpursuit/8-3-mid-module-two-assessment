@@ -63,14 +63,14 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating(movies, rated) {
+function checkIfAnyMovieHasRating(movies, rating) {
   if (Object.keys(movies).length === 0) {
     throw 'Invalid data, please provide a movie.';
   }
 
-  let movieRating = movies.some((movie) => movie.rated === rated);
+  let movieRating = movies.some((movie) => movie.rated === rating);
 
-  if (!rated || !movies.rated) {
+  if (!rating || !movies.rated) {
     /*I wasn't exactly sure how to interperet "if no rating is passed", 
     I assumed either the user inputted rating could be blank or the movies.rated field could be an empty string.
     Either way my code for those assumptions didn't pass the test or my code was just implemented incorrectly.
