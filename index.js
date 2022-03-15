@@ -113,7 +113,15 @@ function findById(movies, id) {
  * genre: "Animation, Adventure, Drama, Family, Fantasy, Music, Mystery",
  */
 function filterByGenre(movies, genre) {
-
+  if (!movies.length) {
+    throw 'Sorry, no movies available.';
+  }
+  const getfilterGenre = movies.filter((movie) => {
+    if (movie. genre. toLowerCase().split(', ').includes (genre. toLowerCase())) {
+      return movie;
+    }
+  });
+  return getfilterGenre;
 }
 
 /**
@@ -140,8 +148,7 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
-}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {}
 
 /**
  * checkMinMetascores()
@@ -157,8 +164,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores(movies, metascore) {
-}
+function checkMinMetascores(movies, metascore) {}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -184,8 +190,7 @@ function checkMinMetascores(movies, metascore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie(movies) {
-}
+function getRottenTomatoesScoreByMovie(movies) {}
 
 // Do not change anything below this line.
 module.exports = {
