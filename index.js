@@ -39,9 +39,9 @@ function getAllMovieTitles(movies) {
     throw 'Invalid data, please provide a movie.';
   }
 
-  let movieTitles = movies.map((movie) => movie.title);
+  let movieTitlesResult = movies.map((movie) => movie.title);
   {
-    return movieTitles;
+    return movieTitlesResult;
   }
 }
 
@@ -63,22 +63,14 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating(movies, rating) {
+function checkIfAnyMovieHasRating(movies, rating = 'G') {
   if (Object.keys(movies).length === 0) {
     throw 'Invalid data, please provide a movie.';
   }
 
-  let movieRating = movies.some((movie) => movie.rated === rating);
-  if (!rating || !movies.rated) {
-    /*I wasn't exactly sure how to interperet "if no rating is passed", 
-    I assumed either the user inputted rating could be blank or the movies.rated field could be an empty string.
-    Either way my code for those assumptions didn't pass the test or my code was just implemented incorrectly.
-    So I had a little bit of difficulty with passing this test.
-    */
-    movies.some((movie) => (movie.rated = 'G'));
-    return movieRating;
-  }
-  return movieRating;
+  let movieRatingResult = movies.some((movie) => movie.rated === rating);
+
+  return movieRatingResult;
 }
 
 /**
@@ -102,11 +94,11 @@ function findById(movies, id) {
     throw 'Invalid data, please provide a movie.';
   }
 
-  let findMovie = movies.find((movie) => movie.imdbID === id, {});
-  if (!findMovie) {
+  let findMovieResult = movies.find((movie) => movie.imdbID === id, {});
+  if (!findMovieResult) {
     return null;
   }
-  return findMovie;
+  return findMovieResult;
 }
 
 /**
@@ -136,12 +128,10 @@ function filterByGenre(movies, genre) {
     throw 'Invalid data, please provide a movie.';
   }
 
-  for (let i = 0; i < movies.length; i++) {
-    movies[i].genre.split(' ');
-    return movies.filter((movie) =>
-      movie.genre.toLowerCase().includes(genre.toLowerCase()),
-    );
-  }
+  return movies.filter(
+    (movie) => movie.genre.toLowerCase().includes(genre.toLowerCase()),
+    {},
+  );
 }
 
 /**
@@ -172,17 +162,11 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   if (Object.keys(movies).length === 0) {
     throw 'Invalid data, please provide a movie.';
   }
-  for (let i = 0; i < movies.length; i++) {
-    let releaseDateFormatter = movies[i].released.split(' ');
-    let releaseDate = parseFloat(releaseDateFormatter[2]);
-    /*Had to use two variables to perform the date conversion to seperate out the year of release so I could compare the two years,
-     I tried implementing these operations within the filter() method but had no luck in getting it to work. So I had to use a 
-     standard for loop to iterate movies before I could format movies.realeased for comparisons.
-     I think the problem with my code is how to set up the variable for the formatted movies.released as one of the filter arguements
-     to compare to the user inputted year on the line below.*/
-    releaseFilter = movies.filter(() => releaseDate <= year, {});
-    return releaseFilter;
-  }
+
+  return movies.filter((movie) => {
+    let movieReleaseDate = new Date(movie.released);
+    return movieReleaseDate.getFullYear() <= year;
+  });
 }
 
 /**
@@ -203,12 +187,12 @@ function checkMinMetascores(movies, metascore) {
   if (Object.keys(movies).length === 0) {
     throw 'Invalid data, please provide a movie.';
   }
-  let metascoreCheck = movies.every(
+  let movieMetascoreCheck = movies.every(
     (movie) => Number(movie.metascore) >= metascore,
     {},
   );
 
-  return metascoreCheck;
+  return movieMetascoreCheck;
 }
 
 /**
@@ -243,15 +227,17 @@ function getRottenTomatoesScoreByMovie(movies) {
   if (Object.keys(movies).length === 0) {
     throw 'Invalid data, please provide a movie.';
   }
-  for (let i = 0; i < movies.length; i++) {
-    let found = movies.find(
-      (movie) => movie.ratings[i].source === 'Rotten Tomatoes',
-      {},
-    );
-    /*Rotten Tomatoes Score*/ found.map(() => {
-      return { [found.title]: found.ratings[i].value };
-    });
-  }
+  return movies.map((movie) => {
+    let rtsValue = movie.ratings.find(
+      (rate) => rate.source === 'Rotten Tomatoes',
+    ).value;
+    /* rts in both variables stand for Rotten Tomato Score */
+    let rtsMovieObj = {
+      [movie.title]: rtsValue,
+    };
+
+    return rtsMovieObj;
+  });
 }
 
 // Do not change anything below this line.
