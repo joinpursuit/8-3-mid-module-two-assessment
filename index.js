@@ -40,7 +40,7 @@ function getAllMovieTitles(movies) {
   movies.map((movie) => {
     movieTitles.push(movie.title);
   });
-  return movieTitles
+  return movieTitles;
 }
 
 /**
@@ -66,11 +66,9 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
     throw "error";
   }
   return movies.some((movie) => {
-    if (
-    movie.rated === rating){
-      return true 
-    }else return false
-    
+    if (movie.rated === rating) {
+      return true;
+    } else return false;
   });
 }
 
@@ -157,7 +155,15 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+
+    if (movies.length < 1) {
+      throw 'Error: No movies found.';
+    }
+    return movies.filter((movie) => movie.released.slice(-5) <= year);
+}
+ 
+
 
 /**
  * checkMinMetascores()
@@ -174,24 +180,15 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  //>  false
  */
 function checkMinMetascores(movies, metascore) {
- 
-
   if (!movies.length) {
     throw "error";
   }
-  return movies.every((movie) => 
-    movie.metascore >= metascore
-    )
+  return movies.every((movie) => movie.metascore >= metascore);
 
-     return movies.every((movie) => 
-        movie.metascore <= metascore)
+  return movies.every((movie) => movie.metascore <= metascore);
 }
-    // list.push(movie)
-    // return list
-
-    
-
-
+// list.push(movie)
+// return list
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -217,7 +214,20 @@ function checkMinMetascores(movies, metascore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (movies.length < 1) {
+    throw 'Error: No movies found';
+  }
+  return movies.map((movie) => {
+    let tomatoScores = {};
+    tomatoScores[movie.title] = movie.ratings.find(
+      (rating) => rating.source === 'Rotten Tomatoes',
+    ).value;
+    return tomatoScores;
+  });
+};
+  
+
 
 // Do not change anything below this line.
 module.exports = {
